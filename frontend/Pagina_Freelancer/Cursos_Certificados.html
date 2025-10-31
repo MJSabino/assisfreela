@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8"/>
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Poppins%3Awght%40400%3B500%3B700&display=swap" onload="this.rel='stylesheet'" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <title>AssisFreela - Cursos e Capacitações</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+        :root {
+            --primary-yellow: #ffd600;
+            --text-gray: #777;
+            --border-light-gray: #eaeaea;
+        }
+        .shadow-soft {
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .shine-button {
+            position: relative;
+            overflow: hidden;
+        }
+        .shine-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all 0.6s;
+        }
+        .shine-button:hover::after {
+            left: 100%;
+        }
+        
+        /* Estilos do Modal (copiados de Editar_Perfil) */
+        .modal-input {
+            border-color: var(--border-light-gray);
+            border-radius: 8px; /* lg */
+            padding: 12px; /* p-3 */
+        }
+        .modal-input:focus {
+            --tw-ring-color: var(--primary-yellow);
+            box-shadow: 0 0 0 2px var(--tw-ring-color);
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen" style='font-family: "Poppins", sans-serif;'>
+
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-white group/design-root overflow-x-hidden">
+    
+    <div class="flex items-center bg-white p-4 pb-2 justify-between">
+        <a href="Perfil_Freelancer.html" class="text-black flex size-12 shrink-0 items-center cursor-pointer" title="Voltar ao Painel">
+            <svg fill="currentColor" height="24px" viewBox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+                <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
+            </svg>
+        </a>
+        <h2 class="text-black text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Cursos e Capacitações</h2>
+    </div>
+
+    <h2 class="text-black text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Certificados Conquistados 🎓</h2>
+    <div id="certificados-lista" class="flex flex-col gap-4 px-4 pb-4">
+        </div>
+
+    <h2 class="text-black text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Envie seu Certificado</h2>
+    <p class="text-[var(--text-gray)] text-base font-normal leading-normal pb-3 pt-1 px-4">
+        Completou um curso fora da plataforma? Envie o certificado e nós atualizaremos automaticamente o seu currículo digital.
+    </p>
+    <div class="flex flex-col p-4">
+        <div id="open-modal-btn" class="flex flex-col items-center gap-6 rounded-xl border-2 border-dashed border-[var(--primary-yellow)] px-6 py-14 bg-white shadow-soft cursor-pointer hover:bg-gray-50 transition-colors">
+            <p class="text-black text-lg font-bold leading-tight tracking-[-0.015em] max-w-[480px] text-center">Clique aqui para enviar seu certificado (PDF, PNG ou JPG)</p>
+            <span class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-black text-white text-sm font-bold leading-normal tracking-[0.015em]">
+                <span class="truncate">⬆️ Enviar Arquivo</span>
+            </span>
+        </div>
+    </div>
+
+    <h2 class="text-black text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Aprimore-se com nossos parceiros</h2>
+    <div class="bg-black text-white text-sm font-normal leading-normal rounded-xl mx-4 px-4 py-2 text-center mb-4">
+        Cursos Concluídos: <span id="total-cursos">0</span> </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+        <div class="flex flex-col gap-3 rounded-xl border border-[var(--border-light-gray)] bg-white p-4 shadow-soft">
+            <div class="flex items-center gap-3">
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg w-10 shrink-0" style='background-image: url("https://logo.clearbit.com/senai.br");'></div>
+                <h2 class="text-black text-base font-bold leading-tight">SENAI</h2>
+            </div>
+            <p class="text-[var(--text-gray)] text-sm">Cursos de formação profissional em diversas áreas industriais. Destaque para cursos de automação industrial.</p>
+            <button class="shine-button mt-2 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[var(--primary-yellow)] text-black text-sm font-medium leading-normal w-full shadow-soft">
+                <span class="truncate">Explore Cursos</span>
+            </button>
+        </div>
+        <div class="flex flex-col gap-3 rounded-xl border border-[var(--border-light-gray)] bg-white p-4 shadow-soft">
+            <div class="flex items-center gap-3">
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg w-10 shrink-0" style='background-image: url("https://logo.clearbit.com/sestsenat.org.br");'></div>
+                <h2 class="text-black text-base font-bold leading-tight">SENAT</h2>
+            </div>
+            <p class="text-[var(--text-gray)] text-sm">Especialização em transporte e logística. Cursos relevantes para gestão de frotas e segurança no trânsito.</p>
+            <button class="shine-button mt-2 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[var(--primary-yellow)] text-black text-sm font-medium leading-normal w-full shadow-soft">
+                <span class="truncate">Explore Cursos</span>
+            </button>
+        </div>
+        <div class="flex flex-col gap-3 rounded-xl border border-[var(--border-light-gray)] bg-white p-4 shadow-soft">
+            <div class="flex items-center gap-3">
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg w-10 shrink-0" style='background-image: url("https://logo.clearbit.com/sebrae.com.br");'></div>
+                <h2 class="text-black text-base font-bold leading-tight">SEBRAE</h2>
+            </div>
+            <p class="text-[var(--text-gray)] text-sm">Foco em empreendedorismo e gestão de pequenos negócios. Ideal para quem concluiu cursos de gestão.</p>
+            <button class="shine-button mt-2 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[var(--primary-yellow)] text-black text-sm font-medium leading-normal w-full shadow-soft">
+                <span class="truncate">Explore Cursos</span>
+            </button>
+        </div>
+        <div class="flex flex-col gap-3 rounded-xl border border-[var(--border-light-gray)] bg-white p-4 shadow-soft">
+            <div class="flex items-center gap-3">
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg w-10 shrink-0" style='background-image: url("https://logo.clearbit.com/sicredi.com.br");'></div>
+                <h2 class="text-black text-base font-bold leading-tight">SICREDI</h2>
+            </div>
+            <p class="text-[var(--text-gray)] text-sm">Cursos e programas sobre educação financeira e cooperativismo. Complementa conhecimentos de gestão.</p>
+            <button class="shine-button mt-2 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[var(--primary-yellow)] text-black text-sm font-medium leading-normal w-full shadow-soft">
+                <span class="truncate">Explore Cursos</span>
+            </button>
+        </div>
+    </div>
+    
+    <div class="mt-8">
+        <p class="text-black text-base font-normal leading-normal pb-3 pt-1 px-4 text-center">Cada curso concluído é um passo rumo à sua próxima conquista. <span class="text-[var(--primary-yellow)]">⭐</span></p>
+        <div class="border-t border-[var(--primary-yellow)] my-4"></div>
+        <footer class="flex flex-col gap-6 px-5 py-6 text-center bg-black @container">
+            <div class="flex justify-center">
+                <span class="text-[var(--primary-yellow)] text-2xl font-bold">AssisFreela</span>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-4 @[480px]:flex-row @[480px]:justify-center">
+                <a class="text-white text-base font-normal leading-normal hover:text-[var(--primary-yellow)]" href="#">Termos de Uso</a>
+                <a class="text-white text-base font-normal leading-normal hover:text-[var(--primary-yellow)]" href="#">Política de Privacidade</a>
+                <a class="text-white text-base font-normal leading-normal hover:text-[var(--primary-yellow)]" href="#">Ajuda</a>
+            </div>
+            <p class="text-white text-base font-normal leading-normal">© 2025 AssisFreela — Conectando talentos e oportunidades.</p>
+        </footer>
+    </div>
+</div>
+
+<div id="certificate-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg relative">
+        <span id="close-modal-btn" class="absolute top-4 right-6 text-gray-400 text-3xl font-bold hover:text-black cursor-pointer">&times;</span>
+        
+        <h2 class="text-2xl font-semibold mb-6">Adicionar Novo Certificado</h2>
+        
+        <form id="certificate-form" class="space-y-4">
+            <div class="flex flex-col">
+                <label for="curso-nome" class="text-sm font-semibold mb-1">Nome do Curso</label>
+                <input type="text" id="curso-nome" name="curso-nome" required class="modal-input w-full focus:outline-none focus:ring-2">
+            </div>
+            <div class="flex flex-col">
+                <label for="curso-file" class="text-sm font-semibold mb-1">Upload (PDF, PNG ou JPG)</label>
+                <input type="file" id="curso-file" name="curso-file" accept=".pdf,.png,.jpg" required class="block w-full text-sm text-gray-900 border border-dashed border-[var(--border-light-gray)] rounded-lg cursor-pointer bg-gray-50 p-3 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-[var(--primary-yellow)] file:text-black hover:file:bg-yellow-400">
+            </div>
+            <button type="submit" class="btn-save w-full bg-[var(--primary-yellow)] text-black font-semibold py-3 px-6 rounded-lg transition-transform transform hover:-translate-y-0.5 hover:shadow-md mt-4">
+                Enviar Certificado
+            </button>
+        </form>
+    </div>
+</div>
+
+<div id="success-toast" class="fixed bottom-5 right-5 bg-green-500 text-white py-3 px-5 rounded-lg shadow-lg z-50 opacity-0 transform translate-y-10 transition-all duration-300 ease-out">
+    ✅ Alterações salvas com sucesso!
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem("accessToken");
+    
+    // --- 1. VERIFICAÇÃO DE LOGIN ---
+    if (!token || localStorage.getItem("userRole") !== 'FREELANCER') {
+        localStorage.clear();
+        window.location.href = "../login.html"; // Ajuste o caminho se necessário
+        return;
+    }
+
+    // --- 2. SELEÇÃO DE ELEMENTOS GLOBAIS ---
+    const toast = document.getElementById('success-toast'); 
+    
+    // Elementos da Lista de Certificados
+    const certificatesListElement = document.getElementById('certificados-lista');
+    const totalCursosSpan = document.getElementById('total-cursos');
+
+    // Elementos do Modal de Certificado
+    const modal = document.getElementById('certificate-modal');
+    const openModalBtn = document.getElementById('open-modal-btn'); // A caixa tracejada
+    const closeModalBtn = document.getElementById('close-modal-btn'); // O 'X' dentro do modal
+    const certificateForm = document.getElementById('certificate-form'); 
+
+    // --- 3. FUNÇÕES AUXILIARES ---
+
+    /**
+     * Mostra um toast de sucesso.
+     */
+    function showSuccessToast(message = "✅ Operação realizada com sucesso!") {
+        if (!toast) return;
+        toast.textContent = message; 
+        toast.classList.remove('opacity-0', 'translate-y-10');
+        toast.classList.add('opacity-100', 'translate-y-0');
+        setTimeout(() => {
+            toast.classList.remove('opacity-100', 'translate-y-0');
+            toast.classList.add('opacity-0', 'translate-y-10');
+        }, 3000); 
+    }
+
+    /**
+     * Adiciona um item de certificado à lista na UI (VERSÃO ADAPTADA PARA O NOVO CARD)
+     */
+    function renderCertificateItem(certificate) {
+        if (!certificatesListElement || !certificate || !certificate.id || !certificate.course_name || !certificate.file_url) {
+            console.error("Dados do certificado inválidos ou elemento da lista não encontrado:", certificate);
+            return;
+        }
+
+        // Remove a mensagem de "lista vazia" se ela existir
+        const emptyMsg = certificatesListElement.querySelector('p.italic');
+        if (emptyMsg) emptyMsg.remove();
+
+        // Constrói a URL completa
+        const fileUrl = certificate.file_url.startsWith('http') ? certificate.file_url : `http://127.0.0.1:8000${certificate.file_url}`;
+
+        const card = document.createElement('div');
+        card.className = 'flex flex-col rounded-xl border border-[var(--border-light-gray)] bg-white p-4 shadow-soft';
+        card.dataset.certificateId = certificate.id;
+
+        card.innerHTML = `
+            <div class="flex items-center gap-4">
+                <div class="text-[var(--primary-yellow)] flex items-center justify-center rounded-lg shrink-0 size-12" data-icon="GraduationCap" data-size="24px" data-weight="regular">
+                    <span class="material-symbols-outlined text-[var(--primary-yellow)] text-[40px]"> workspace_premium </span>
+                </div>
+                <div class="flex flex-col justify-center flex-1">
+                    <a href="${fileUrl}" target="_blank" rel="noopener noreferrer" class="text-black text-base font-bold leading-normal line-clamp-1 hover:underline">
+                        ${certificate.course_name}
+                    </a>
+                    <p class="text-[var(--text-gray)] text-sm font-normal leading-normal line-clamp-2">ID: ${certificate.id}</p>
+                </div>
+                <button type="button" class="btn-delete-certificate ml-2 text-gray-400 hover:text-red-600" title="Excluir certificado">
+                    <i class="fas fa-trash-alt fa-lg"></i>
+                </button>
+            </div>
+            
+            <a href="${fileUrl}" target="_blank" rel="noopener noreferrer" class="shine-button mt-4 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-black text-white text-sm font-medium leading-normal w-full">
+                <span class="truncate">Ver Certificado</span>
+            </a>
+        `;
+        
+        // Adiciona listener para exclusão
+        card.querySelector('.btn-delete-certificate').addEventListener('click', (e) => {
+            e.preventDefault(); // Impede que o link 'a' seja acionado
+            e.stopPropagation();
+            handleDeleteCertificate(certificate.id, card);
+        });
+
+        certificatesListElement.appendChild(card);
+    }
+    
+    /**
+     * Função para lidar com a exclusão de certificado
+     */
+    async function handleDeleteCertificate(certificateId, cardElement) {
+        if (!certificateId || !cardElement) return;
+
+        const courseName = cardElement.querySelector('a').textContent.trim() || 'este certificado';
+
+        if (!confirm(`Tem certeza que deseja excluir o certificado "${courseName}"? Esta ação não pode ser desfeita.`)) {
+            return;
+        }
+        
+        const deleteButton = cardElement.querySelector('.btn-delete-certificate');
+        if(deleteButton) deleteButton.disabled = true;
+
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/users/me/certificates/${certificateId}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            const result = await response.json().catch(() => ({})); 
+
+            if (!response.ok) {
+                throw new Error(result.detail || `Erro ${response.status}: ${response.statusText}`);
+            }
+
+            // Animação de remoção da UI
+            cardElement.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
+            cardElement.style.opacity = '0';
+            cardElement.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                cardElement.remove();
+                atualizarContagem(); // Atualiza a contagem
+                // Verifica se a lista ficou vazia
+                if (certificatesListElement && certificatesListElement.children.length === 0) {
+                    certificatesListElement.innerHTML = '<p class="p-3 text-gray-500 italic text-center">Nenhum certificado adicionado ainda.</p>';
+                }
+            }, 300);
+
+            showSuccessToast("✅ Certificado excluído!");
+
+        } catch (error) {
+            console.error("Erro ao excluir certificado:", error);
+            alert(`Erro ao excluir: ${error.message}`);
+             if(deleteButton) deleteButton.disabled = false; 
+        }
+    }
+
+    /**
+     * Atualiza a contagem total de cursos
+     */
+    function atualizarContagem() {
+        if (!certificatesListElement || !totalCursosSpan) return;
+        const total = certificatesListElement.children.length;
+        
+        // Se o único "filho" for a mensagem de 'vazio', a contagem é 0
+        if (total === 1 && certificatesListElement.querySelector('p.italic')) {
+             totalCursosSpan.textContent = '0';
+             return;
+        }
+        
+        totalCursosSpan.textContent = total.toString();
+    }
+
+    // --- 4. FUNÇÃO PRINCIPAL DE CARREGAMENTO DE DADOS ---
+    async function carregarCertificados() {
+        if (!certificatesListElement) {
+            console.error("Elemento <ul> para certificados não encontrado.");
+            return;
+        }
+        certificatesListElement.innerHTML = '<p class="p-3 text-gray-500 italic text-center">Carregando certificados...</p>';
+        
+        try {
+            const response = await fetch("http://127.0.0.1:8000/users/me/freelancer", {
+                headers: { "Authorization": `Bearer ${token}` }
+            });
+            if (!response.ok) {
+                if (response.status === 401) { 
+                    localStorage.clear(); window.location.href = "../login.html"; return;
+                }
+                throw new Error(`Falha ao carregar dados: ${response.statusText}`);
+            }
+            
+            const freelancer = await response.json();
+            
+            // Limpa a lista
+            certificatesListElement.innerHTML = ''; 
+            
+            // Carrega Certificados
+            if (freelancer.certificates && Array.isArray(freelancer.certificates) && freelancer.certificates.length > 0) {
+                console.log("Carregando certificados:", freelancer.certificates);
+                freelancer.certificates.forEach(cert => renderCertificateItem(cert)); 
+            } else {
+                console.log("Nenhum certificado para carregar.");
+                certificatesListElement.innerHTML = '<p class="p-3 text-gray-500 italic text-center">Nenhum certificado adicionado ainda.</p>';
+            }
+            
+            atualizarContagem(); // Atualiza a contagem
+
+        } catch (error) {
+            console.error("Erro detalhado ao carregar perfil:", error);
+            certificatesListElement.innerHTML = `<p class="p-3 text-red-500 italic text-center">Erro ao carregar certificados (${error.message}).</p>`;
+        }
+    } // Fim de carregarCertificados
+
+    // --- 5. ADIÇÃO DE EVENT LISTENERS ---
+
+    // Listener Salvar Certificado (Modal)
+    if (certificateForm && modal && certificatesListElement) { 
+        certificateForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); 
+            const courseNameInput = certificateForm.querySelector('#curso-nome');
+            const fileInput = certificateForm.querySelector('#curso-file');
+            const submitButton = certificateForm.querySelector('button[type="submit"]');
+
+            if (!courseNameInput || !fileInput || !submitButton) { alert("Erro interno."); return; }
+            
+            const file = fileInput.files[0]; const courseName = courseNameInput.value.trim();
+            if (!courseName) { alert("Insira o nome do curso."); courseNameInput.focus(); return; }
+            if (!file) { alert("Selecione o arquivo."); fileInput.focus(); return; }
+            
+            const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
+            if (!allowedTypes.includes(file.type)) { alert('Formato inválido (JPG, PNG, PDF).'); return; }
+            const maxSizeInBytes = 10 * 1024 * 1024; // 10MB
+            if (file.size > maxSizeInBytes) { alert('Arquivo muito grande (> 10MB).'); return; }
+
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true; submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Enviando...';
+
+            const formData = new FormData();
+            formData.append('course_name', courseName); formData.append('file', file);
+
+            try {
+                const response = await fetch("http://127.0.0.1:8000/users/me/certificates", {
+                    method: "POST", headers: { "Authorization": `Bearer ${token}` }, body: formData
+                });
+                const newCertificate = await response.json(); 
+                if (!response.ok) { throw new Error(newCertificate.detail || `Erro ${response.status}`); }
+
+                showSuccessToast("✅ Certificado adicionado!");
+                renderCertificateItem(newCertificate); // Adiciona na UI
+                atualizarContagem(); // Atualiza a contagem
+                certificateForm.reset(); // Limpa form
+                modal.classList.add('hidden'); // Fecha modal
+
+            } catch (error) {
+                console.error("Erro ao adicionar Certificado:", error); alert(`Erro: ${error.message}`);
+            } finally { submitButton.disabled = false; submitButton.innerHTML = originalButtonText; }
+        });
+    } else { console.error("Form/Modal/Lista Certificados não encontrados."); }
+
+    // Lógica Abrir/Fechar Modal Certificado
+    if (modal && openModalBtn && closeModalBtn) {
+        openModalBtn.onclick = () => modal.classList.remove('hidden');
+        closeModalBtn.onclick = () => modal.classList.add('hidden');
+        modal.onclick = (event) => { if (event.target == modal) modal.classList.add('hidden'); }; 
+    } else { console.warn("Elementos Modal Certificado (abrir/fechar) não encontrados."); }
+
+    // --- 6. INICIA O CARREGAMENTO DOS DADOS ---
+    carregarCertificados();
+
+}); // Fim do DOMContentLoaded
+</script>
+
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AssisFreela - Painel da Empresa</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FFB300",
+                        "background-light": "#F5F5F5",
+                        "background-dark": "#121212",
+                        "card-dark": "#1F1F1F",
+                        "text-light": "#000000",
+                        "text-dark": "#FFFFFF",
+                        "xp-bar": "#4CAF50",
+                        "level-gold": "#FFD700",
+                        "mission-accepted": "#2196F3",
+                        "mission-completed": "#4CAF50",
+                        "mission-pending": "#FFC107",
+                    },
+                    fontFamily: {
+                        display: ["Montserrat", "sans-serif"],
+                        body: ["Poppins", "sans-serif"],
+                    },
+                    borderRadius: {
+                        'DEFAULT': '0.5rem',
+                    },
+                },
+            },
+        };
+    </script>
+    <style type="text/tailwindcss">
+        .font-display { font-family: 'Montserrat', sans-serif; font-weight: 800; } .font-body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-body">
+
+    <header class="bg-black/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-md">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a class="text-2xl font-display text-white" href="Perfil_Empresa.html">AssisFreela</a>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a class="text-white hover:text-primary transition-colors" href="#vagas-postadas-container">Minhas Vagas</a>
+                <a class="text-white hover:text-primary transition-colors" href="#">Candidatos</a>
+                <a class="text-white hover:text-primary transition-colors" href="#">Analíticos</a>
+                <a class="text-white hover:text-primary transition-colors" href="Editar_Perfil_Empresa.html">Perfil</a>
+                <a class="text-white hover:text-primary transition-colors" href="#">Notificações <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full">3</span></a>
+                <a class="text-white hover:text-primary transition-colors" href="#" id="logout-button-header">Sair</a>
+            </nav>
+            <button class="md:hidden text-white"><span class="material-icons">menu</span></button>
+        </div>
+    </header>
+
+    <main class="pt-20 pb-10">
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <aside class="lg:col-span-1 space-y-8">
+                 <div class="bg-white dark:bg-card-dark p-6 rounded-lg shadow-lg relative overflow-hidden">
+                     <div class="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-br from-primary to-yellow-600 rounded-t-lg opacity-30"></div>
+                     <h3 class="text-xl font-display mb-4 text-text-light dark:text-text-dark z-10 relative">Minha Empresa</h3>
+                     <div class="flex flex-col items-center z-10 relative">
+                         <img alt="Company Profile Picture" class="w-28 h-28 rounded-full mb-4 object-cover border-4 border-primary shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJpJF97cboIfuO7D_66E9hd5A4hBCg-acRb16tkYZA514bHnOi0FPgRLz4zB5tM3vLddmwAwFfI7m-6uAA8xZsEJLusFpUbruu8Wj1tU4YbM4kn53nXbplHc2R6idxkNW3ixQVhWTozXuDb7FdQ6Ks1n40JtB0UeaYvy8p7hOsyOvsd-mosy_GFOCR9pRi57-fEMmrX4ktdFuPv_l5ispiZIu6lC7vrCoDMJEXscGOrxo1Dugev-bH4ML_UtZn5tyNp0cuA0Q8KLM" />
+                         <h4 id="company-name" class="text-xl font-semibold text-text-light dark:text-text-dark text-center">Carregando...</h4>
+                         <p class="text-gray-500 dark:text-gray-400 text-sm text-center">Tecnologia, Assis</p>
+                         <div class="flex items-center text-level-gold mt-2"> <span class="material-icons text-xl">star</span><span class="material-icons text-xl">star</span><span class="material-icons text-xl">star</span><span class="material-icons text-xl">star</span><span class="material-icons text-xl">star_half</span><span class="text-sm ml-1 font-bold">4.8</span></div>
+                         <button class="mt-4 bg-primary text-black font-semibold px-5 py-2 rounded-lg hover:bg-yellow-400 transition-colors shadow-md" onclick="document.getElementById('profile-section').classList.toggle('hidden');"><span class="material-symbols-outlined mr-2">person</span> Perfil</button>
+                         <div class="hidden mt-4 w-full" id="profile-section">
+                             <p class="text-sm text-gray-600 dark:text-gray-300 text-center">Especializada em desenvolvimento de software e consultoria de TI...</p>
+                             <ul class="text-sm text-gray-600 dark:text-gray-400 mt-2 space-y-1 text-center">
+                                 <li id="company-cnpj"><span class="font-semibold">CNPJ:</span> carregando...</li>
+                                 <li id="company-phone"><span class="font-semibold">Contato:</span> carregando...</li>
+                                 <li id="company-email"><span class="font-semibold">Email:</span> carregando...</li>
+                             </ul>
+                             <a class="mt-4 block text-primary hover:underline text-sm flex items-center justify-center" href="Editar_Perfil_Empresa.html"><span class="material-symbols-outlined text-base mr-1">edit</span> Editar Perfil</a>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="bg-white dark:bg-card-dark p-6 rounded-lg shadow-lg">
+                     <h3 class="text-xl font-display mb-4 text-text-light dark:text-text-dark flex items-center"><span class="material-symbols-outlined mr-2">bar_chart</span> Relatório de Vagas</h3>
+                     <div class="space-y-4 mb-4">
+                         <div class="flex items-center justify-between bg-gray-100 dark:bg-gray-700 p-3 rounded-lg"><div><p class="font-semibold text-text-light dark:text-text-dark">Vagas Abertas</p><p id="stats-vagas-abertas" class="text-2xl font-bold text-primary">...</p></div><span class="material-symbols-outlined text-4xl text-gray-400">business_center</span></div>
+                         <div class="flex items-center justify-between bg-gray-100 dark:bg-gray-700 p-3 rounded-lg"><div><p class="font-semibold text-text-light dark:text-text-dark">Vagas Concluídas</p><p id="stats-vagas-concluidas" class="text-2xl font-bold text-primary">...</p></div><span class="material-symbols-outlined text-4xl text-gray-400">task_alt</span></div>
+                         <div class="flex items-center justify-between bg-gray-100 dark:bg-gray-700 p-3 rounded-lg"><div><p class="font-semibold text-text-light dark:text-text-dark">Candidatos Ativos</p><p id="stats-candidatos-ativos" class="text-2xl font-bold text-primary">0</p></div><span class="material-symbols-outlined text-4xl text-gray-400">group</span></div>
+                     </div>
+                     <button class="w-full bg-primary text-black font-semibold px-4 py-2 rounded-lg hover:bg-yellow-400 transition-colors flex items-center justify-center shadow-md"><span class="material-symbols-outlined mr-2">download</span> Gerar Relatório Completo</button>
+                 </div>
+             </aside>
+
+            <section class="lg:col-span-3 space-y-8">
+                 <div class="bg-white dark:bg-card-dark p-6 rounded-lg shadow-lg">
+                     <h2 class="text-2xl font-display mb-6 text-text-light dark:text-text-dark flex items-center"><span class="material-symbols-outlined mr-3 text-3xl">flash_on</span> Ações Rápidas</h2>
+                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                        <a href="Criacao_novas_vagas.html" class="bg-primary text-black font-semibold px-5 py-3 rounded-lg hover:bg-yellow-400 transition-colors flex items-center justify-center shadow-md">
+                            <span class="material-symbols-outlined mr-2">add_circle</span> Publicar Vaga
+                        </a>
+                        <a href="Candidatos_vagas.html" class="bg-gray-200 dark:bg-gray-700 text-text-light dark:text-text-dark font-semibold px-5 py-3 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors flex items-center justify-center shadow-md">
+                            <span class="material-symbols-outlined mr-2">group</span> Ver Candidatos
+                        </a>
+                        <button class="bg-gray-200 dark:bg-gray-700 text-text-light dark:text-text-dark font-semibold px-5 py-3 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors flex items-center justify-center shadow-md">
+                            <span class="material-symbols-outlined mr-2">analytics</span> Ver Relatório
+                        </button>
+                        <a href="Editar_Perfil_Empresa.html" class="bg-gray-200 dark:bg-gray-700 text-text-light dark:text-text-dark font-semibold px-5 py-3 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors flex items-center justify-center shadow-md">
+                            <span class="material-symbols-outlined mr-2">edit_note</span> Editar Perfil
+                        </a>
+                    </div>
+                     </div>
+
+                <div class="bg-white dark:bg-card-dark p-6 rounded-lg shadow-lg">
+                    <h2 class="text-2xl font-display mb-6 text-text-light dark:text-text-dark flex items-center">
+                        <span class="material-symbols-outlined mr-3 text-3xl">history</span> Últimas Vagas Postadas
+                    </h2>
+                    <div id="vagas-postadas-container" class="space-y-4">
+                        <p id="vagas-loading-message" class="text-gray-500">Carregando vagas...</p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-card-dark p-6 rounded-lg shadow-lg">
+                    <h2 class="text-2xl font-display mb-6 text-text-light dark:text-text-dark flex items-center">
+                        <span class="material-symbols-outlined mr-3 text-3xl text-mission-accepted">play_circle</span> Vagas em Andamento
+                    </h2>
+                    <div id="vagas-ativas-container" class="space-y-4">
+                        <p id="vagas-ativas-loading-message" class="text-gray-500">Carregando vagas ativas...</p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-card-dark p-6 rounded-lg shadow-lg">
+                    <h2 class="text-2xl font-display mb-6 text-text-light dark:text-text-dark flex items-center">
+                        <span class="material-symbols-outlined mr-3 text-3xl text-mission-completed">task_alt</span> Vagas Concluídas
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md border-t-4 border-green-500 ...">...</div>
+                        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md border-t-4 border-green-500 ...">...</div>
+                        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md border-t-4 border-green-500 ...">...</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-black text-white py-12">
+       </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const token = localStorage.getItem("accessToken");
+            if (!token) {
+                window.location.href = "../login.html";
+                return;
+            }
+
+            // Inicia todas as buscas
+            carregarInfoEmpresa(token);
+            carregarVagasPostadas(token);
+            carregarVagasAtivas(token);
+            carregarEstatisticas(token);
+
+            // Listeners
+            document.getElementById("vagas-postadas-container")?.addEventListener('click', (event) => { handleVagaCardClick(event, token); });
+            document.getElementById("vagas-ativas-container")?.addEventListener('click', (event) => { handleVagaCardClick(event, token); });
+            document.getElementById("logout-button-header")?.addEventListener("click", function(e) { e.preventDefault(); localStorage.clear(); window.location.href = "../login.html"; });
+        });
+
+        // --- Carregar Dados da Empresa ---
+        async function carregarInfoEmpresa(token) {
+            try {
+                const response = await fetch("http://127.0.0.1:8000/users/me", { headers: { "Authorization": "Bearer " + token }});
+                if (!response.ok) {
+                    if (response.status === 401 || response.status === 403) { localStorage.removeItem("accessToken"); window.location.href = "../login.html"; }
+                    throw new Error(`Falha ao buscar dados: ${response.statusText}`);
+                }
+                const user = await response.json();
+                const nameEl = document.getElementById("company-name"), emailEl = document.getElementById("company-email"), cnpjEl = document.getElementById("company-cnpj"), phoneEl = document.getElementById("company-phone");
+                if (nameEl) { nameEl.textContent = user.company_name || "N/I"; }
+                if (emailEl) { emailEl.innerHTML = `<span class="font-semibold">Email:</span> ${user.email || "N/I"}`; }
+                if (cnpjEl) { cnpjEl.innerHTML = `<span class="font-semibold">CNPJ:</span> ${user.cnpj || "N/I"}`; }
+                if (phoneEl) { phoneEl.innerHTML = `<span class="font-semibold">Contato:</span> ${user.phone || "N/I"}`; }
+            } catch (error) { console.error("Erro perfil:", error); /* ... error display ... */ }
+        }
+
+        // --- Carregar "Últimas Vagas Postadas" (NÃO ATIVAS) ---
+        async function carregarVagasPostadas(token) {
+             const container = document.getElementById("vagas-postadas-container");
+             const loadingMessage = document.getElementById("vagas-loading-message");
+             if (!container || !loadingMessage) return;
+             loadingMessage.textContent = "Carregando vagas recentes...";
+
+             try {
+                const response = await fetch("http://127.0.0.1:8000/vagas/me", { headers: { "Authorization": "Bearer " + token } });
+                if (!response.ok) { /* ... erro handling ... */ throw new Error('Falha ao buscar vagas'); }
+                const vagas = await response.json();
+                // --- DEBUG ---
+                //console.log("Dados recebidos por /vagas/me:", JSON.stringify(vagas, null, 2));
+                // --- FIM DEBUG ---
+                container.innerHTML = "";
+                const vagasNaoAtivas = vagas.filter(v => v.status !== 'EM_ANDAMENTO');
+                // --- DEBUG ---
+                //console.log("Vagas filtradas (NÃO EM_ANDAMENTO):", JSON.stringify(vagasNaoAtivas, null, 2));
+                // --- FIM DEBUG -
+
+                if (vagasNaoAtivas.length === 0) {
+                     container.innerHTML = "<p class='text-gray-500'>Nenhuma vaga publicada recentemente (ou estão em andamento).</p>";
+                     return;
+                }
+                vagasNaoAtivas.forEach(vaga => { container.innerHTML += criarCardVagaHtml(vaga); });
+
+             } catch (error) { console.error("Erro vagas postadas:", error); if (container) { container.innerHTML = `<p class='text-red-500'>Erro: ${error.message}</p>`; } }
+        }
+
+        // --- Carregar "Vagas em Andamento" (FASE 9) ---
+        async function carregarVagasAtivas(token) {
+            const container = document.getElementById("vagas-ativas-container");
+            const loadingMessage = document.getElementById("vagas-ativas-loading-message");
+             if (!container || !loadingMessage) return;
+             loadingMessage.textContent = "Carregando vagas ativas...";
+
+            try {
+                const response = await fetch("http://127.0.0.1:8000/vagas/me/active", { headers: { "Authorization": "Bearer " + token } });
+                if (!response.ok) { /* ... erro handling ... */ throw new Error(`Falha ao buscar ativas: ${response.statusText}`);}
+                const vagasAtivas = await response.json();
+                // --- DEBUG ---
+                //console.log("Dados recebidos por /vagas/me/active:", JSON.stringify(vagasAtivas, null, 2));
+                // --- FIM DEBUG ---
+                container.innerHTML = "";
+
+                if (vagasAtivas.length === 0) {
+                    container.innerHTML = "<p class='text-gray-500'>Nenhuma vaga em andamento no momento.</p>";
+                    return;
+                }
+                vagasAtivas.forEach(vaga => { container.innerHTML += criarCardVagaHtml(vaga); });
+
+            } catch (error) { console.error("Erro vagas ativas:", error); if (container) { container.innerHTML = `<p class='text-red-500'>Erro: ${error.message}</p>`; }}
+        }
+        
+        // --- Função Helper para Criar Card HTML ---
+        function criarCardVagaHtml(vaga) {
+             const dataPublicacao = new Date(vaga.created_at).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+             // IMPORTANTE: Certificar que vaga.id existe e é uma string aqui
+             const vagaIdParaLink = (vaga && vaga.id) ? String(vaga.id) : '';
+             const numCandidatos = (vaga && vaga.applicants_emails) ? vaga.applicants_emails.length : 0;
+             const isEmAndamento = vaga && vaga.status === 'EM_ANDAMENTO';
+
+             // Verifica se o ID é válido antes de criar os botões que dependem dele
+             if (!vagaIdParaLink) {
+                 console.error("Tentando criar card para vaga sem ID:", vaga);
+                 return ''; // Retorna string vazia para não quebrar o layout
+             }
+
+             const botoesHtml = `
+                 ${!isEmAndamento ? `
+                     <a class="bg-blue-200 text-blue-800 px-2 py-1 rounded-full text-xs hover:bg-blue-300 transition-colors" href="Candidatos_vagas.html?vagaId=${vagaIdParaLink}">
+                         Ver Candidatos (${numCandidatos})
+                     </a>` : ''}
+                 ${isEmAndamento ? `
+                     <a class="bg-green-200 text-green-800 px-2 py-1 rounded-full text-xs hover:bg-green-300 transition-colors" href="#">
+                         Gerenciar Vaga
+                     </a>` : ''}
+                 <button class="bg-primary text-black px-3 py-1 rounded-lg text-sm hover:bg-yellow-400 transition-colors flex items-center shadow-sm">
+                     <span class="material-symbols-outlined text-base mr-1">rate_review</span> Avaliar
+                 </button>
+                 <button class="delete-vaga-btn bg-red-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-red-600 transition-colors flex items-center shadow-sm" data-vaga-id="${vagaIdParaLink}">
+                     <span class="material-symbols-outlined text-base mr-1">delete</span> Excluir
+                 </button>
+             `;
+
+             return `
+                 <div class="vaga-card-container flex flex-col sm:flex-row items-start sm:items-center justify-between bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                     <div class="flex-grow mb-2 sm:mb-0">
+                         <h3 class="font-semibold text-lg text-text-light dark:text-text-dark">${vaga.titulo || 'Título Indefinido'}</h3>
+                         <p class="text-sm text-gray-500 dark:text-gray-400">
+                             Publicado em: ${dataPublicacao} • Status: ${vaga.status || '?'}
+                             ${isEmAndamento && vaga.accepted_freelancer_email ? `<br>Aceito: ${vaga.accepted_freelancer_email}` : ''}
+                         </p>
+                     </div>
+                     <div class="flex flex-wrap gap-2">
+                         ${botoesHtml}
+                     </div>
+                 </div>
+             `;
+        }
+
+
+        // --- Carregar Estatísticas ---
+        async function carregarEstatisticas(token) { /* ... (código existente) ... */ }
+
+        // --- Lidar com Clique de Excluir Vaga ---
+        async function handleVagaCardClick(event, token) { /* ... (código existente) ... */ }
+    </script>
+</body>
+</html>

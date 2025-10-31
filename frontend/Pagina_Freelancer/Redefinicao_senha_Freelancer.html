@@ -1,0 +1,93 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Work+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet" />
+    <title>Stitch Design</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+        .carousel-image { display: none; opacity: 0; } .carousel-image.active { display: block; opacity: 1; }
+    </style>
+</head>
+
+<body>
+    <div class="relative flex h-auto min-h-screen w-full flex-col bg-[#fcfbf8] group/design-root overflow-x-hidden lg:flex-row" style='font-family: "Work Sans", "Noto Sans", sans-serif;'>
+        <div class="hidden lg:flex lg:w-1/2 flex-col items-center justify-center relative overflow-hidden">
+            <div class="carousel-container absolute inset-0">
+                <img alt="A padlock closing, symbolizing security" class="carousel-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out active" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPjTebXXF7zpc_P0ASIrkWgD624cRZNohq1EYs3bBpSElqKc4o2IBlIOrXJXRKnr-d0RjKYjg7X0p0qGfqD_-xBZHTti2FrA_k4kDElZn1QwPruoX2ozRI6J7zz2zbsjcEvJIEg7SckpDLSIdUvlT7QYSRG1ITMmPAnroOYwvOpxbhoB4au1vj405hLyCRRv_KTOWXvTGjg2RGm--5mOi8koiGJd1h-cgi-BtjNMTGEdVKVIfGGmVC7s0KVKBZeec15OE8ZbFYQrQ"
+                />
+                <img alt="A path being cleared, representing a fresh start" class="carousel-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJqJMWP1bPBu1aAmD7K4ZdaRxJf5z1fwblLfGSDSo3tKDT4luJxoiRPoSIXQoy3FYC3FmOu3PvptmK7_R-5PLvWvLg9CbnbPdCwXJ4au-_pPNQ90Kbo0Pu6z8_u3gO_83ko7OV8h9_hLLN2K2UYUWswpDDL3vSVdaRxNBA7imJxntz44YdQ8FLl6woSpGxbiWv1f2c-itDwX3z0Hhx_UJ9YX5BrbpgC7HJlIFjP8_CmequWvZbsn7rRSPUcD_0pg4xhFNE6dgQAyw"
+                />
+                <img alt="Two hands connecting, symbolizing reconnection" class="carousel-image absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbitPpfEZxb2zxbXur1wrVo4zGfuzaGKVk2yrzYdtUN7TSurQ5OVMggfrvOfW6bOBpJUhFU3HGVqPt5XI3q9M3V_6AaJDzeZVAqHzw__i-UKFamq6rp3qzHcX1SgLngnXPMtkOduJN1ZBjxXcL0HOhBzO_jTdC-swwmab5m7KlXT0t68uyknrMHnsXhQWMzIrQipUyTMWyLIFiVfOLslAKngyxmk0kG01MRxLwnEnirs2lLYuNFMnPeAL1Sem3RFX9GA990O3VFLY"
+                />
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#fcfbf8] via-transparent to-transparent opacity-75"></div>
+        </div>
+        <div class="layout-container flex h-full grow flex-col lg:w-1/2">
+            <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f4f2e6] px-10 py-3">
+                <div class="flex items-center gap-4 text-[#1c1a0d]">
+                    <div class="size-4">
+                        <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+</svg>
+                    </div>
+                    <h2 class="text-[#1c1a0d] text-lg font-bold leading-tight tracking-[-0.015em]">AssisFreela</h2>
+                </div>
+            </header>
+            <div class="px-5 sm:px-10 md:px-20 lg:px-10 flex flex-1 justify-center py-5">
+                <div class="layout-content-container flex flex-col w-full max-w-[512px] py-5 flex-1">
+                    <h2 class="text-[#1c1a0d] tracking-light text-[28px] font-bold leading-tight px-4 text-center pb-3 pt-5">Redefinir sua senha</h2>
+                    <p class="text-[#9e9047] text-base font-normal leading-normal pb-3 pt-1 px-4 text-center">Para redefinir sua senha, digite seu e-mail ou CPF/CNPJ.</p>
+                    <div class="flex flex-wrap items-end gap-4 px-4 py-3">
+                        <label class="flex flex-col min-w-40 flex-1">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#1c1a0d] focus:outline-0 focus:ring-0 border border-[#e9e4ce] bg-[#fcfbf8] focus:border-[#e9e4ce] h-14 placeholder:text-[#9e9047] p-[15px] text-base font-normal leading-normal" placeholder="E-mail ou CPF/CNPJ" value=""/>
+</label>
+                    </div>
+                    <div class="flex px-4 py-3">
+                        <button class="flex min-w-[84px] max-w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 flex-1 bg-[#f9d106] text-[#1c1a0d] text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Enviar link de redefinição</span>
+</button>
+                    </div>
+                    <p class="text-[#9e9047] text-sm font-normal leading-normal pb-3 pt-1 px-4 text-center">
+                        <a class="underline" href="#">Voltar ao Login</a>
+                    </p>
+                </div>
+            </div>
+            <footer class="flex justify-center">
+                <div class="flex max-w-[960px] flex-1 flex-col">
+                    <p class="text-[#9e9047] text-sm font-normal leading-normal pb-3 pt-1 px-4 text-center">© 2025 AssisFreela. Todos os direitos reservados.</p>
+                    <p class="text-[#9e9047] text-sm font-normal leading-normal pb-3 pt-1 px-4 text-center underline">Termos de Uso</p>
+                    <p class="text-[#9e9047] text-sm font-normal leading-normal pb-3 pt-1 px-4 text-center underline">Política de Privacidade</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('.carousel-image');
+            let currentIndex = 0;
+
+            function showImage(index) {
+                images.forEach((img, i) => {
+                    img.classList.remove('active');
+                    img.style.opacity = '0';
+                });
+                images[index].classList.add('active');
+                images[index].style.opacity = '1';
+            }
+
+            function nextImage() {
+                currentIndex = (currentIndex + 1) % images.length;
+                showImage(currentIndex);
+            }
+            // Initial display
+            showImage(currentIndex);
+            // Change image every 5 seconds
+            setInterval(nextImage, 5000);
+        });
+    </script>
+</body>
+
+</html>

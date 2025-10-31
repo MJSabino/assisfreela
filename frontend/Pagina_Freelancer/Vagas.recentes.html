@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vagas Recentes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366F1',
+                        'background-light': '#F8F9FA',
+                        'background-dark': '#121212',
+                        'surface-light': '#FFFFFF',
+                        'surface-dark': '#1E1E1E',
+                        'text-light': '#1F2937',
+                        'text-dark': '#E5E7EB',
+                        'text-secondary-light': '#6B7280',
+                        'text-secondary-dark': '#9CA3AF',
+                        'border-light': '#E5E7EB',
+                        'border-dark': '#374151',
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        'DEFAULT': '0.75rem',
+                        'lg': '1rem',
+                        'xl': '1.25rem'
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .scroll-snap-x-mandatory {
+            scroll-snap-type: x mandatory;
+        }
+        .scroll-snap-center {
+            scroll-snap-align: center;
+        }
+        .progress-bar-container {
+            height: 8px;
+            background-color: #E0E7FF;border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #4F46E5;border-radius: 4px;
+            transition: width 0.5s ease-in-out;
+        }
+        .gamified-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 0.75rem;
+            border-radius: 9999px;font-weight: 600;
+            font-size: 0.75rem;line-height: 1;
+            text-transform: uppercase;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark">
+<div class="container mx-auto p-4 md:p-6 lg:p-8">
+<header class="flex items-center justify-between mb-8">
+<button class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+<span class="material-icons text-text-light dark:text-text-dark">arrow_back</span>
+</button>
+<h1 class="text-2xl font-bold text-text-light dark:text-text-dark">Vagas Recentes</h1>
+<div class="w-10"></div>
+</header>
+<main class="space-y-10">
+<section>
+<h2 class="text-xl font-semibold text-text-light dark:text-text-dark mb-4">Quick Decision Carousel</h2>
+<div class="flex overflow-x-auto scroll-snap-x-mandatory pb-4 -mx-4 px-4 space-x-4">
+<div class="min-w-[85%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-[30%] bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark shadow-lg flex flex-col justify-between scroll-snap-center">
+<div>
+<h3 class="font-bold text-xl text-text-light dark:text-text-dark mb-1">Vendedor Externo</h3>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm mb-4">Comércio Mais</p>
+<div class="mb-4">
+<p class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary dark:text-indigo-400">R$ 50/dia</p>
+<span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300 mt-2 inline-block">Em Avaliação</span>
+</div>
+<ul class="list-disc list-inside text-sm text-text-secondary-light dark:text-text-secondary-dark space-y-1">
+<li>Prospectar novos clientes.</li>
+<li>Apresentar produtos e serviços.</li>
+<li>Manter bom relacionamento pós-venda.</li>
+</ul>
+</div>
+<div class="mt-6">
+<button class="w-full bg-primary text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-indigo-700 transition-colors">
+                            Ver Detalhes
+                        </button>
+</div>
+</div>
+<div class="min-w-[85%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-[30%] bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark shadow-lg flex flex-col justify-between scroll-snap-center">
+<div>
+<h3 class="font-bold text-xl text-text-light dark:text-text-dark mb-1">Diarista</h3>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm mb-4">Lar Feliz</p>
+<div class="mb-4">
+<p class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary dark:text-indigo-400">R$ 120/dia</p>
+<span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300 mt-2 inline-block">Em Avaliação</span>
+</div>
+<ul class="list-disc list-inside text-sm text-text-secondary-light dark:text-text-secondary-dark space-y-1">
+<li>Limpeza geral de residências.</li>
+<li>Organização de ambientes.</li>
+<li>Disponibilidade para horários flexíveis.</li>
+</ul>
+</div>
+<div class="mt-6">
+<button class="w-full bg-primary text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-indigo-700 transition-colors">
+                            Ver Detalhes
+                        </button>
+</div>
+</div>
+<div class="min-w-[85%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-[30%] bg-surface-light dark:bg-surface-dark p-6 rounded-xl border border-border-light dark:border-border-dark shadow-lg flex flex-col justify-between scroll-snap-center">
+<div>
+<h3 class="font-bold text-xl text-text-light dark:text-text-dark mb-1">Entregador de Encomendas</h3>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm mb-4">Entrega Rápida</p>
+<div class="mb-4">
+<p class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary dark:text-indigo-400">R$ 80/dia</p>
+<span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300 mt-2 inline-block">Em Avaliação</span>
+</div>
+<ul class="list-disc list-inside text-sm text-text-secondary-light dark:text-text-secondary-dark space-y-1">
+<li>Realizar entregas e coletas diárias.</li>
+<li>Seguir rotas otimizadas.</li>
+<li>Garantir a integridade das encomendas.</li>
+</ul>
+</div>
+<div class="mt-6">
+<button class="w-full bg-primary text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-indigo-700 transition-colors">
+                            Ver Detalhes
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<section>
+<h2 class="text-xl font-semibold text-text-light dark:text-text-dark mb-4">Vagas Aceitas: Sua Jornada de Sucesso!</h2>
+<div class="space-y-4">
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-lg border border-border-light dark:border-border-dark shadow-lg relative">
+<div class="absolute top-0 right-0 p-3 z-10">
+<button class="p-2 rounded-full bg-primary text-white hover:bg-indigo-700 transition-colors flex items-center gap-1 text-sm font-medium">
+<span class="material-icons text-xl">chat</span> Chat
+                        </button>
+</div>
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4">
+<div>
+<h3 class="font-bold text-xl text-text-light dark:text-text-dark">Redator de Conteúdo SEO</h3>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm">ComunicaWeb</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 text-sm text-text-secondary-light dark:text-text-secondary-dark mb-6">
+<div>
+<p class="font-medium">Início Previsto:</p>
+<p class="text-text-light dark:text-text-dark">15/07/2024</p>
+</div>
+<div>
+<p class="font-medium">Duração Estimada:</p>
+<p class="text-text-light dark:text-text-dark">3 meses</p>
+</div>
+</div>
+<div class="relative pt-1">
+<div class="flex mb-2 items-center justify-between">
+<div>
+<span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-primary bg-indigo-200">
+                                Próxima Etapa: Início da Vaga
+                            </span>
+</div>
+<div class="text-right">
+<span class="text-xs font-semibold inline-block text-primary">
+                                75%
+                            </span>
+</div>
+</div>
+<div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-indigo-200">
+<div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary" style="width:75%"></div>
+</div>
+<div class="flex justify-between text-xs text-text-secondary-light dark:text-text-secondary-dark">
+<span>Hoje</span>
+<span>15/07/2024</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-lg border border-border-light dark:border-border-dark shadow-lg relative">
+<div class="absolute top-0 right-0 p-3 z-10">
+<button class="p-2 rounded-full bg-primary text-white hover:bg-indigo-700 transition-colors flex items-center gap-1 text-sm font-medium">
+<span class="material-icons text-xl">chat</span> Chat
+                        </button>
+</div>
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4">
+<div>
+<h3 class="font-bold text-xl text-text-light dark:text-text-dark">Desenvolvedor Front-end</h3>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm">Tech Solutions</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 text-sm text-text-secondary-light dark:text-text-secondary-dark mb-6">
+<div>
+<p class="font-medium">Início Previsto:</p>
+<p class="text-text-light dark:text-text-dark">01/08/2024</p>
+</div>
+<div>
+<p class="font-medium">Duração Estimada:</p>
+<p class="text-text-light dark:text-text-dark">6 meses</p>
+</div>
+</div>
+<div class="relative pt-1">
+<div class="flex mb-2 items-center justify-between">
+<div>
+<span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-primary bg-indigo-200">
+                                Próxima Etapa: Início da Vaga
+                            </span>
+</div>
+<div class="text-right">
+<span class="text-xs font-semibold inline-block text-primary">
+                                30%
+                            </span>
+</div>
+</div>
+<div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-indigo-200">
+<div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary" style="width:30%"></div>
+</div>
+<div class="flex justify-between text-xs text-text-secondary-light dark:text-text-secondary-dark">
+<span>Hoje</span>
+<span>01/08/2024</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section>
+<h2 class="text-xl font-semibold text-text-light dark:text-text-dark mb-4">Vagas Encerradas: Suas Conquistas</h2>
+<div class="space-y-4">
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-border-light dark:border-border-dark shadow-sm flex items-center justify-between">
+<div>
+<h3 class="font-semibold text-lg text-text-light dark:text-text-dark">Gestão de Mídias Sociais</h3>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm">Inova Marketing Digital</p>
+<div class="flex items-center gap-2 text-sm text-text-secondary-light dark:text-text-secondary-dark mt-1">
+<span>15/06/2023</span>
+<span class="font-bold text-green-600 dark:text-green-400">R$ 1.200,00</span>
+</div>
+</div>
+<div class="flex-shrink-0">
+<span class="gamified-badge bg-green-100 text-green-800 dark:bg-green-700 dark:text-green-300">
+<span class="material-symbols-outlined mr-1 text-base">emoji_events</span> Concluído
+                        </span>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-border-light dark:border-border-dark shadow-sm flex items-center justify-between">
+<div>
+<h3 class="font-semibold text-lg text-text-light dark:text-text-dark">Criação de Logo</h3>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm">Startup Visionária</p>
+<div class="flex items-center gap-2 text-sm text-text-secondary-light dark:text-text-secondary-dark mt-1">
+<span>28/05/2023</span>
+<span class="font-bold text-green-600 dark:text-green-400">R$ 850,00</span>
+</div>
+</div>
+<div class="flex-shrink-0">
+<span class="gamified-badge bg-green-100 text-green-800 dark:bg-green-700 dark:text-green-300">
+<span class="material-symbols-outlined mr-1 text-base">workspace_premium</span> Concluído
+                        </span>
+</div>
+</div>
+</div>
+</section>
+<section>
+<h2 class="text-xl font-semibold text-text-light dark:text-text-dark mb-4">Arquivo: Lições Aprendidas</h2>
+<div class="space-y-4">
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-border-light dark:border-border-dark shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+<div>
+<h3 class="font-semibold text-lg text-text-light dark:text-text-dark">Assistente Virtual</h3>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm">Empresa Digital</p>
+<div class="flex items-center gap-2 text-sm text-text-secondary-light dark:text-text-secondary-dark mt-1">
+<span>01/04/2023</span>
+</div>
+</div>
+<div class="flex-shrink-0">
+<span class="gamified-badge bg-red-100 text-red-800 dark:bg-red-700 dark:text-red-300">
+<span class="material-symbols-outlined mr-1 text-base">cancel</span> Não Aceito
+                        </span>
+</div>
+<div class="mt-2 sm:mt-0 w-full">
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark italic">"Focar em habilidades de comunicação oral para a próxima oportunidade."</p>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-border-light dark:border-border-dark shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+<div>
+<h3 class="font-semibold text-lg text-text-light dark:text-text-dark">Designer Gráfico</h3>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm">Agência Criativa</p>
+<div class="flex items-center gap-2 text-sm text-text-secondary-light dark:text-text-secondary-dark mt-1">
+<span>10/03/2023</span>
+</div>
+</div>
+<div class="flex-shrink-0">
+<span class="gamified-badge bg-red-100 text-red-800 dark:bg-red-700 dark:text-red-300">
+<span class="material-symbols-outlined mr-1 text-base">cancel</span> Não Aceito
+                        </span>
+</div>
+<div class="mt-2 sm:mt-0 w-full">
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark italic">"Atualizar portfólio com projetos mais recentes e variados."</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+
+</body></html>

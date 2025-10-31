@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AssisFreela - Conectando talentos e oportunidades</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FFB300",
+                        "background-light": "#F5F5F5",
+                        "background-dark": "#121212",
+                        "card-dark": "#1F1F1F",
+                        "text-light": "#000000",
+                        "text-dark": "#FFFFFF",
+                    },
+                    fontFamily: {
+                        display: ["Montserrat", "sans-serif"],
+                        body: ["Poppins", "sans-serif"],
+                    },
+                    borderRadius: {
+                        'DEFAULT': '0.5rem',
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .font-display { font-family: 'Montserrat', sans-serif; font-weight: 800; }
+        .font-body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-body">
+<header class="bg-black/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-md">
+<div class="container mx-auto px-6 py-3 flex justify-between items-center">
+<a class="text-2xl font-display text-white" href="#">AssisFreela</a>
+<nav class="hidden md:flex items-center space-x-6">
+<a class="text-white hover:text-primary transition-colors" href="#onboarding">Como Funciona</a>
+<a class="text-white hover:text-primary transition-colors" href="#vagas">Vagas</a>
+<a class="text-white hover:text-primary transition-colors" href="#planos">Planos</a>
+<a class="text-white hover:text-primary transition-colors" href="#cursos">Cursos e Palestras</a>
+<a class="text-white hover:text-primary transition-colors" href="/frontend/login.html">Entrar</a>
+<a class="bg-primary text-black font-semibold px-4 py-2 rounded-lg hover:bg-yellow-400 transition-colors" href="#">Cadastrar</a>
+</nav>
+<button class="md:hidden text-white">
+<span class="material-icons">menu</span>
+</button>
+</div>
+</header>
+<main>
+<section class="relative h-screen flex items-center justify-center text-white bg-black">
+<div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtJyzkm2ygokzm7itdokawYvLZW7KQE4Ve6WSjNpjzbFaZ7BfCIh3mxFTbtGPQGQ6tF7YQRbjtI7kUCMmQPl1j_s6WITRmR_Zc3f_cTxENZf0LsazSvyu71h318efAIjDsjCbfOqNAU9fjwDzDBXL_kZH9RIsRyrd4pUHOFbWADQ9gK-Zb-QeiEKCEm6h_-2K8mHjtnirEiGcDaAwUOvjkzSNr3_nkhyZ_e_TaX0PF9zUoql7B1EahqK6PElnOg-Dfjh0F79eFv8A');"></div>
+<div class="relative z-10 text-center px-6">
+<h1 class="text-5xl md:text-7xl font-display mb-4">Visibilidade para quem trabalha, <br/>agilidade para quem precisa.</h1>
+<p class="text-lg md:text-xl font-body mb-8 max-w-3xl mx-auto">Conectamos freelancers e empresas para gerar renda, dignidade e oportunidade.</p>
+<div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+<a class="bg-primary text-black font-semibold py-3 px-8 rounded-lg text-lg hover:bg-yellow-400 transition-colors w-full sm:w-auto" href="#">Cadastrar-se — 15 dias grátis</a>
+<a class="border-2 border-white text-white font-semibold py-3 px-8 rounded-lg text-lg hover:bg-white hover:text-black transition-colors w-full sm:w-auto" href="#vagas">Ver vagas disponíveis</a>
+</div>
+</div>
+</section>
+<section class="py-20 bg-background-light dark:bg-background-dark" id="onboarding">
+<div class="container mx-auto px-6 text-center">
+<h2 class="text-4xl font-display mb-12 text-text-light dark:text-text-dark">Sua Jornada Começa Aqui!</h2>
+<div class="max-w-3xl mx-auto bg-white dark:bg-card-dark p-8 rounded-lg shadow-xl text-left">
+<div id="onboarding-step-1">
+<p class="text-xl font-semibold mb-6 text-text-light dark:text-text-dark">Para começar, nos diga: você é um freelancer ou uma empresa buscando talentos?</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<a class="onboarding-btn bg-primary text-black font-semibold py-3 px-6 rounded-lg hover:bg-yellow-400 transition-colors w-full sm:w-auto" href="register_freelancer.html">Sou Freelancer</a>
+<a class="onboarding-btn border-2 border-primary text-primary font-semibold py-3 px-6 rounded-lg hover:bg-primary hover:text-black transition-colors w-full sm:w-auto" href="register_Empresa.html">Sou Empresa</a>
+</div>
+</div>
+<div class="hidden" id="onboarding-step-2a">
+<p class="text-xl font-semibold mb-6 text-text-light dark:text-text-dark">Excelente! Para te ajudar a encontrar as melhores oportunidades, quais categorias de serviços te interessam mais?</p>
+<div class="grid md:grid-cols-2 gap-4 mb-6">
+<label class="flex items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+<input class="form-checkbox h-5 w-5 text-primary rounded focus:ring-primary" type="checkbox" value="beleza"/>
+<span class="ml-3 text-lg text-text-light dark:text-text-dark">Beleza (Manicure, Maquiador, Personal Trainer...)</span>
+</label>
+<label class="flex items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+<input class="form-checkbox h-5 w-5 text-primary rounded focus:ring-primary" type="checkbox" value="gastronomia"/>
+<span class="ml-3 text-lg text-text-light dark:text-text-dark">Gastronomia (Cozinha, Padeiro, Bartender...)</span>
+</label>
+<label class="flex items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+<input class="form-checkbox h-5 w-5 text-primary rounded focus:ring-primary" type="checkbox" value="eventos"/>
+<span class="ml-3 text-lg text-text-light dark:text-text-dark">Eventos (Organizador, DJ, Cerimonialista...)</span>
+</label>
+<label class="flex items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+<input class="form-checkbox h-5 w-5 text-primary rounded focus:ring-primary" type="checkbox" value="construcao"/>
+<span class="ml-3 text-lg text-text-light dark:text-text-dark">Construção (Pedreiro, Encanador, Eletricista...)</span>
+</label>
+<label class="flex items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+<input class="form-checkbox h-5 w-5 text-primary rounded focus:ring-primary" type="checkbox" value="transporte"/>
+<span class="ml-3 text-lg text-text-light dark:text-text-dark">Transporte (Motorista Particular, Auxiliar de carga...)</span>
+</label>
+<label class="flex items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+<input class="form-checkbox h-5 w-5 text-primary rounded focus:ring-primary" type="checkbox" value="tecnologia"/>
+<span class="ml-3 text-lg text-text-light dark:text-text-dark">Tecnologia (Social Media, Desenvolvedor Web, Fotógrafo...)</span>
+</label>
+</div>
+<button class="bg-primary text-black font-semibold py-3 px-6 rounded-lg hover:bg-yellow-400 transition-colors w-full" data-next-step="3a">Ver Vagas Recomendadas</button>
+</div>
+<div class="hidden" id="onboarding-step-2b">
+<p class="text-xl font-semibold mb-6 text-text-light dark:text-text-dark">Ótimo! Para te ajudar a encontrar os profissionais ideais, qual tipo de serviço você está buscando?</p>
+<div class="grid md:grid-cols-2 gap-4 mb-6">
+<label class="flex items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+<input class="form-radio h-5 w-5 text-primary focus:ring-primary" name="business_type" type="radio" value="curta_duracao"/>
+<span class="ml-3 text-lg text-text-light dark:text-text-dark">Projetos de Curta Duração</span>
+</label>
+<label class="flex items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+<input class="form-radio h-5 w-5 text-primary focus:ring-primary" name="business_type" type="radio" value="longa_duracao"/>
+<span class="ml-3 text-lg text-text-light dark:text-text-dark">Contratação de Longa Duração</span>
+</label>
+<label class="flex items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+<input class="form-radio h-5 w-5 text-primary focus:ring-primary" name="business_type" type="radio" value="consultoria"/>
+<span class="ml-3 text-lg text-text-light dark:text-text-dark">Consultoria Específica</span>
+</label>
+<label class="flex items-center bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+<input class="form-radio h-5 w-5 text-primary focus:ring-primary" name="business_type" type="radio" value="varios_projetos"/>
+<span class="ml-3 text-lg text-text-light dark:text-text-dark">Vários Projetos Simultâneos</span>
+</label>
+</div>
+<button class="bg-primary text-black font-semibold py-3 px-6 rounded-lg hover:bg-yellow-400 transition-colors w-full" data-next-step="3b">Encontrar Freelancers</button>
+</div>
+<div class="hidden" id="onboarding-step-3a">
+<p class="text-xl font-semibold mb-6 text-text-light dark:text-text-dark">Perfeito! Agora você está pronto para explorar. Criaremos um perfil inicial para você e te levaremos direto às vagas que combinam com seus interesses!</p>
+<button class="bg-primary text-black font-semibold py-3 px-6 rounded-lg hover:bg-yellow-400 transition-colors w-full" onclick="location.href='#vagas-recomendadas'">Ir para Vagas Recomendadas</button>
+<a class="block text-center mt-4 text-primary hover:underline" href="#">Prefiro criar meu perfil completo agora</a>
+</div>
+<div class="hidden" id="onboarding-step-3b">
+<p class="text-xl font-semibold mb-6 text-text-light dark:text-text-dark">Entendido! Vamos te ajudar a encontrar os melhores talentos para sua empresa. Você será direcionado para um painel onde poderá publicar sua primeira vaga!</p>
+<button class="bg-primary text-black font-semibold py-3 px-6 rounded-lg hover:bg-yellow-400 transition-colors w-full" onclick="location.href='#publicar-vaga'">Publicar Minha Primeira Vaga</button>
+<a class="block text-center mt-4 text-primary hover:underline" href="#">Explorar perfis de freelancers primeiro</a>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-black text-white">
+<div class="container mx-auto px-6 text-center">
+<p class="text-xl md:text-2xl font-body mb-10 max-w-4xl mx-auto italic">“O AssisFreela nasceu para dar visibilidade a quem precisa recomeçar e ajudar empresas locais a crescerem junto. Nosso propósito é transformar conexões em oportunidades.”</p>
+<div class="flex flex-col md:flex-row justify-center items-center gap-12">
+<div class="flex flex-col items-center">
+<span class="material-icons text-5xl text-primary mb-2">eco</span>
+<h3 class="text-lg font-semibold">🌱 Inclusão Produtiva</h3>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-icons text-5xl text-primary mb-2">storefront</span>
+<h3 class="text-lg font-semibold">💼 Economia Local</h3>
+</div>
+<div class="flex flex-col items-center">
+<span class="material-icons text-5xl text-primary mb-2">school</span>
+<h3 class="text-lg font-semibold">🎓 Capacitação</h3>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-gray-200 dark:bg-black" id="planos">
+<div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-center gap-12">
+<div class="bg-black text-white p-8 rounded-lg shadow-2xl max-w-sm w-full transform -translate-y-4 md:translate-y-0">
+<h3 class="font-display text-3xl text-primary mb-4">Plano Único</h3>
+<p class="text-5xl font-display mb-2">R$1,99<span class="text-lg font-body">/mês</span></p>
+<p class="font-body mb-6 text-yellow-300">15 dias grátis para experimentar!</p>
+<ul class="space-y-4 font-body text-lg mb-8">
+<li class="flex items-center"><span class="material-icons text-primary mr-2">check_circle</span> Vagas ilimitadas</li>
+<li class="flex items-center"><span class="material-icons text-primary mr-2">check_circle</span> Cursos e Palestras</li>
+<li class="flex items-center"><span class="material-icons text-primary mr-2">check_circle</span> Acesso ao Currículo Digital</li>
+<li class="flex items-center"><span class="material-icons text-primary mr-2">check_circle</span> Perfil público visível</li>
+</ul>
+<a class="w-full bg-primary text-black font-semibold py-3 px-8 rounded-lg text-lg hover:bg-yellow-400 transition-colors block text-center" href="#">Assinar — R$1,99/mês</a>
+</div>
+<div class="md:w-1/2">
+<img alt="Equipe de trabalho colaborando" class="rounded-lg shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIeEOpRXCOKm4VBCmvse1MomXFY0w1_lpKpAre5scouat9LKG29NmwBgs_PS1LewnVtBJSfLywmo5s3Wuz7yGgtjQUegEE4IY7xjyN3KVqpeADdHwpou9Aucf41qRg7CcIXv7YoOQbxxbRjoDkqZQsoPKGKrIYzSmyjl9iaMBLwYi16yQTuRixsE5_K0rJX0jqe5YIditnxfprUiJQXxJa3rGQNrIS_LE6FQnc1iJ8vHLPaLHzCLUFZqXgkPs1-0mZQxaTxvpQkMI"/>
+</div>
+</div>
+</section>
+<section class="py-20 bg-background-light dark:bg-background-dark" id="cursos">
+<div class="container mx-auto px-6">
+<h2 class="text-4xl font-display text-center mb-4 text-text-light dark:text-text-dark">Cursos &amp; Palestras</h2>
+<p class="text-center text-lg max-w-3xl mx-auto mb-12 text-gray-600 dark:text-gray-300">Cada curso concluído ou palestra assistida é automaticamente registrada no currículo do freelancer, visível para empresas que buscam profissionais engajados e capacitados.</p>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-white dark:bg-card-dark rounded-lg shadow-lg overflow-hidden">
+<img alt="Pessoa sorrindo durante atendimento ao cliente" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiOwZfE1wTD2M4Bl8iWNpDVK_i0KPhb1VS9a-EpnJXq166md1G8mYM11ZTKVJqmiCwlrl0R_xXIjzcX8wxLucG6C8Fck7li8zdcN-VezMsmwYcy7BgZILkIp4PIyiYFTZMpMj-hAssoa9-j8ld1dNWN7PJJJPt9NOFf27Q_tMOrIZ4hoFy0ZFeC0PY-XEEYwwX3RmpGN7Lk2t6Pf8BdyW-ILKGhcJM3ykH8QKul9tS1gYAfPyDaFi_d06wCrbAJliQ7aXmsb18pOU"/>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2 text-text-light dark:text-text-dark">Atendimento ao cliente</h3>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark rounded-lg shadow-lg overflow-hidden">
+<img alt="Pessoa trabalhando em um laptop com um relógio na mesa" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRCuy4KlAPbvm6py6w8WHY4OzD5tB9aBfnge7MSGFBHWfqBbnfD0O7qZJz-VSKMBsjw1M8PuZHjAqzSceXCmPpCg-7vKGWvsV5aRq_w7quLNkIX_uxJfVZFx9uykmgUnqNrE-r3RFhhvKnSd7K7HXW1pRZX9y1ds9HWtdbOZlRCtUc9fnJmo1n1t0kGKAAGF2w0Na3W_j2lNdq002XH_I2PJqAo9ao5nSMN1MRn7c-8t-DRVbrKtdmK69U-aUaATDn0LErcT5rmFI"/>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2 text-text-light dark:text-text-dark">Gestão do tempo para freelancers</h3>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark rounded-lg shadow-lg overflow-hidden">
+<img alt="Palestrante apresentando para uma audiência" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgrWCdjWhP6g7adpHC7FPft3F8OW32K4v0rU5si7Nwo0_A5sPWqi-vWlQ4cyt3jEtJiPdW0QV60uQm1oONcvLxgRi_oD-qGs-GJkxaFJ0U2SAofNGa7wbcn3kqZBOPGUU35kQJWf0DPiQK6mBuGJBWei6pPUnllyJB6IQwGeygBxbNmwgzSTuSPkPfE25d8P9CdxUlqrmDmtoL2K51ljH1xhwIjhuwYcSjdgxlfDQIOHnAdyQDJiMmOGcUlWYdu_jnotXGa_KDT7c"/>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2 text-text-light dark:text-text-dark">Empreendedorismo local</h3>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 bg-gray-100 dark:bg-card-dark">
+<div class="container mx-auto px-6">
+<h2 class="text-4xl font-display text-center mb-12 text-text-light dark:text-text-dark">Depoimentos</h2>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-white dark:bg-background-dark p-6 rounded-lg shadow-lg">
+<p class="text-gray-600 dark:text-gray-300 italic mb-4">"Consegui meu primeiro freela em dois dias! A plataforma é incrível e super fácil de usar."</p>
+<div class="flex items-center">
+<img alt="Foto de Maria S., Freelancer" class="w-12 h-12 rounded-full mr-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYEJO4hMqV7bTdB9UKH8DaIqmoiRj03OTJqS-xyEJ4fe96TrB-r8QKUTzcPSD3BNPC13JZ_h_IYUfbU30yEYAd7QRFdYca8tSKLWdiaiP1dco7gfShY4vECSf7UTZDOL9HdjwSaztTAM0qP3YP367gDTrqf1rtAolXA5JEOstaBJig5P1MOR6uzISHiwIHt9cZCgoerOUUiiWAjIzusBifewlwyLtZEsFNlsoQjP1uWKfCMUcwiE_zjN-YRVXU0S1il31vOyJpQy8"/>
+<div>
+<p class="font-semibold text-text-light dark:text-text-dark">Maria S.</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">Freelancer de Gastronomia</p>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark p-6 rounded-lg shadow-lg">
+<p class="text-gray-600 dark:text-gray-300 italic mb-4">"Encontrar profissionais qualificados na minha cidade ficou muito mais rápido com o AssisFreela. Recomendo!"</p>
+<div class="flex items-center">
+<img alt="Foto de João P., Dono de Restaurante" class="w-12 h-12 rounded-full mr-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZvvmGDcj_604LEahUGlgMCNgDdTA2uT-8R3a0aA21YPBDr4BkmabI2qtqjZrmVG0pcd3Yr08YqG3yBiqa8d62afa9mN7mu5n_nw4XYHbSAnBXkKWI1YwyOb4yKL-sga-dbntip010j83HQ9fo58FSLZteOwYgL58sz96H5hb_uVRBA1hSMrAYHRJvPBwIssOdVTsc-zRjodgvryQbWAa9liIMmHZQW0GzIsEB9c9pGrZr5gIEB-q54U3xyNCRf5R3rfQ5lMgDqiI"/>
+<div>
+<p class="font-semibold text-text-light dark:text-text-dark">João P.</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">Dono de Restaurante</p>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-background-dark p-6 rounded-lg shadow-lg">
+<p class="text-gray-600 dark:text-gray-300 italic mb-4">"Os cursos me ajudaram a melhorar meu currículo e a conseguir vagas melhores. Vale muito a pena."</p>
+<div class="flex items-center">
+<img alt="Foto de Ana L., Fotógrafa" class="w-12 h-12 rounded-full mr-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3KJDS_Hp4BIjvnicWQdLNvG95IMwODRdVdNM7IPfYVvCNtt_yutMwWO0-Bb3u8zoQP_vEEhsX_EmVQaxTa5WG0zOMaAKUuozG0E-bMvktU0THlL6OO1wfcpFPlVzqyVf7lhHKy8szvusSS2911mvMoPaxSJvaSbpg5bjPKEOQ1n0-f47OjnvvYj8qnzDeRvyNU_EZJ0oSaD5vTUS0ca1QtmhQ03EtOzRS5D9RdldcjY9kH6bxn9m0vD5zMXhLY4XaDX_Ig3LBY40"/>
+<div>
+<p class="font-semibold text-text-light dark:text-text-dark">Ana L.</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">Fotógrafa</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-black text-white py-12">
+<div class="container mx-auto px-6 text-center">
+<h3 class="text-2xl font-display mb-4">AssisFreela</h3>
+<div class="flex justify-center space-x-6 mb-6">
+<a class="hover:text-primary transition-colors" href="#onboarding">Como Funciona</a>
+<a class="hover:text-primary transition-colors" href="#">Vagas</a>
+<a class="hover:text-primary transition-colors" href="#">Planos</a>
+<a class="hover:text-primary transition-colors" href="#">Cursos</a>
+</div>
+<div class="flex justify-center space-x-6 mb-8">
+<a class="text-white hover:text-primary transition-colors" href="#"><svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg></a>
+<a class="text-white hover:text-primary transition-colors" href="#"><svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+<a class="text-white hover:text-primary transition-colors" href="#"><svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427-.465C9.53 2.013 9.884 2 12.315 2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 8a3 3 0 110-6 3 3 0 010 6zm6.406-11.845a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z" fill-rule="evenodd"></path></svg></a>
+</div>
+<p class="text-gray-400">AssisFreela — Conectando talentos e oportunidades locais.</p>
+</div>
+</footer>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const onboardingSteps = document.querySelectorAll('[id^="onboarding-step-"]');
+            const onboardingButtons = document.querySelectorAll('.onboarding-btn');
+            onboardingButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const currentStepId = event.target.closest('[id^="onboarding-step-"]').id;
+                    const nextStepId = event.target.dataset.nextStep;
+                    document.getElementById(currentStepId).classList.add('hidden');
+                    document.getElementById(onboarding-step-$nextStepId).classList.remove('hidden');
+                });
+            });
+        });
+    </script>
+
+</body></html>

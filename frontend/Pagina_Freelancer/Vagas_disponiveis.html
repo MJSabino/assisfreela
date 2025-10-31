@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Vagas Disponíveis - AssisFreela</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366F1', 
+                        'background-light': '#F8F9FA',
+                        'background-dark': '#121212',
+                        'surface-light': '#FFFFFF',
+                        'surface-dark': '#1E1E1E',
+                        'text-light': '#1F2937',
+                        'text-dark': '#E5E7EB',
+                        'text-secondary-light': '#6B7280',
+                        'text-secondary-dark': '#9CA3AF',
+                        'border-light': '#E5E7EB',
+                        'border-dark': '#374151',
+                        'assis-primary': '#FFB300', // Mantido para o caso de usar em outro lugar
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"], 
+                    },
+                    borderRadius: {
+                        'DEFAULT': '0.75rem',
+                        'lg': '1rem',
+                        'xl': '1.25rem'
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="container mx-auto p-4">
+    <header class="flex items-center justify-between mb-6">
+        <a href="Perfil_Freelancer.html" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+            <span class="material-icons text-text-light dark:text-text-dark">arrow_back</span>
+        </a>
+        <h1 class="text-xl font-bold">Vagas Disponíveis</h1>
+        <button class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+            <span class="material-icons text-text-light dark:text-text-dark">notifications</span>
+        </button>
+    </header>
+
+    <div class="mb-6 space-y-4">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <select class="w-full pl-3 pr-8 py-2 rounded-lg bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark focus:ring-primary focus:border-primary text-text-light dark:text-text-dark text-sm appearance-none">
+                <option value="">Tipo de Vaga</option>
+                <option value="hora">Por Hora</option>
+                <option value="projeto">Por Projeto</option>
+            </select>
+            <select class="w-full pl-3 pr-8 py-2 rounded-lg bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark focus:ring-primary focus:border-primary text-text-light dark:text-text-dark text-sm appearance-none">
+                <option value="">Remuneração</option>
+                 <option value="ate-500">Até R$500</option>
+                <option value="500-1000">R$500 - R$1.000</option>
+                <option value="1000-2000">R$1.000 - R$2.000</option>
+                <option value="acima-2000">Acima de R$2.000</option>
+            </select>
+            <select class="w-full pl-3 pr-8 py-2 rounded-lg bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark focus:ring-primary focus:border-primary text-text-light dark:text-text-dark text-sm appearance-none">
+                <option value="">Setor</option>
+                 <option value="design">Design Gráfico</option>
+                <option value="dev">Desenvolvimento Web</option>
+                <option value="mkt">Marketing Digital</option>
+                <option value="redacao">Redação/Copywriting</option>
+            </select>
+             <label class="flex items-center space-x-2 justify-center py-2 px-3 rounded-lg bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark text-text-light dark:text-text-dark text-sm">
+                <input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+                <span>Remoto</span> </label>
+        </div>
+    </div>
+
+    <div id="vagas-container" class="space-y-4">
+        <p id="loading-message" class="text-center text-text-secondary-light dark:text-text-secondary-dark">Carregando vagas...</p>
+        </div>
+
+     <div id="message-container" class="mt-4 text-center h-5"></div>
+
+</div>
+
+<script>
+    const vagasContainer = document.getElementById('vagas-container');
+    const loadingMessage = document.getElementById('loading-message');
+    const messageContainer = document.getElementById('message-container'); // Para feedback da candidatura
+
+    // Função para mostrar mensagens de feedback (candidatura)
+    function showFeedbackMessage(message, isError = false) {
+        messageContainer.innerHTML = ''; // Limpa mensagens antigas
+        const p = document.createElement('p');
+        p.textContent = message;
+        p.className = isError
+            ? 'text-red-600 font-semibold'
+            : 'text-green-600 font-semibold';
+        messageContainer.appendChild(p);
+        // Limpa a mensagem após alguns segundos
+        setTimeout(() => { messageContainer.innerHTML = ''; }, 3000);
+    }
+
+    // --- 1. Buscar Vagas Abertas ---
+    async function fetchVagas() {
+        try {
+            const response = await fetch("http://127.0.0.1:8000/vagas"); // Rota pública
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const vagas = await response.json();
+            renderVagas(vagas);
+        } catch (error) {
+            console.error("Erro ao buscar vagas:", error);
+            loadingMessage.textContent = "Erro ao carregar vagas. Tente atualizar a página.";
+            loadingMessage.style.color = "red";
+        }
+    }
+
+    // --- 2. Renderizar Cards de Vaga ---
+    function renderVagas(vagas) {
+        vagasContainer.innerHTML = ''; // Limpa o container (remove "Carregando...")
+
+        if (vagas.length === 0) {
+            vagasContainer.innerHTML = '<p class="text-center text-text-secondary-light dark:text-text-secondary-dark">Nenhuma vaga aberta encontrada no momento.</p>';
+            return;
+        }
+
+        vagas.forEach(vaga => {
+            const orcamentoFormatado = vaga.orcamento.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            const habilidadesHtml = vaga.habilidades ? `<p class="text-sm text-text-light dark:text-text-dark pt-2"><strong class="font-medium">Habilidades:</strong> ${vaga.habilidades}</p>` : '';
+             const dataPublicacao = new Date(vaga.created_at).toLocaleDateString('pt-BR', {
+                day: '2-digit', month: '2-digit', year: 'numeric'
+            });
+
+            const cardHtml = `
+                <div class="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-border-light dark:border-border-dark shadow-sm">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                             <span class="material-symbols-outlined text-gray-500">business</span>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <a href="Detalhes_Vaga.html?id=${vaga.id}" class="hover:underline">
+                                        <h3 class="font-semibold text-lg text-text-light dark:text-text-dark">${vaga.titulo}</h3>
+                                    </a>
+                                    <p class="text-sm text-text-secondary-light dark:text-text-secondary-dark">Empresa: ${vaga.owner_email}</p>
+                                </div>
+                                <span class="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark whitespace-nowrap">${dataPublicacao}</span>
+                            </div>
+                            <p class="mt-2 text-sm text-text-secondary-light dark:text-text-secondary-dark">${vaga.descricao.substring(0, 150)}${vaga.descricao.length > 150 ? '...' : ''}</p> <div class="mt-2 flex flex-wrap items-center gap-2 text-sm">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-primary dark:bg-indigo-900 dark:text-indigo-300">
+                                    <span class="material-symbols-outlined text-sm mr-1">${vaga.tipo_pagamento === 'hora' ? 'schedule' : 'receipt_long'}</span>
+                                    ${vaga.tipo_pagamento === 'hora' ? 'Por Hora' : 'Por Projeto'}
+                                </span>
+                                <span class="font-bold text-primary dark:text-indigo-400">${orcamentoFormatado}${vaga.tipo_pagamento === 'hora' ? '/hora' : ''}</span>
+                                <span class="text-text-secondary-light dark:text-text-secondary-dark">(Nível: ${vaga.nivel})</span>
+                                ${vaga.prazo ? `<span class="text-text-secondary-light dark:text-text-secondary-dark">(Prazo: ${vaga.prazo} dias)</span>` : ''}
+                            </div>
+                             ${habilidadesHtml}
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-end">
+                        <button class="apply-button bg-primary text-white font-medium py-2 px-6 rounded-lg hover:bg-indigo-700 transition-colors" data-vaga-id="${vaga.id}">
+                            Candidatar-se
+                        </button>
+                    </div>
+                </div>
+            `;
+            vagasContainer.innerHTML += cardHtml;
+        });
+    }
+
+    // --- 3. Lidar com Clique no Botão "Candidatar-se" ---
+    async function handleApplyClick(event) {
+        const applyButton = event.target.closest('.apply-button');
+        if (!applyButton) {
+            return;
+        }
+
+        applyButton.disabled = true;
+        applyButton.textContent = 'Enviando...';
+
+        const vagaId = applyButton.dataset.vagaId;
+        const token = localStorage.getItem("accessToken");
+        const userRole = localStorage.getItem("userRole");
+
+        if (!token) {
+            showFeedbackMessage("Você precisa estar logado para se candidatar.", true);
+            // ATUALIZAÇÃO 2: Caminho do login corrigido
+            setTimeout(() => { window.location.href = "/login.html"; }, 2000); 
+            applyButton.disabled = false;
+            applyButton.textContent = 'Candidatar-se';
+            return;
+        }
+
+        if (userRole !== 'FREELANCER') {
+            showFeedbackMessage("Apenas freelancers podem se candidatar a vagas.", true);
+            applyButton.disabled = false;
+            applyButton.textContent = 'Candidatar-se';
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/vagas/${vagaId}/apply`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            const result = await response.json(); 
+
+            if (response.ok) { // Status 200 OK
+                showFeedbackMessage(result.message || "Candidatura enviada com sucesso!", false);
+                applyButton.textContent = 'Candidatado!';
+                applyButton.classList.remove('bg-primary', 'hover:bg-indigo-700');
+                applyButton.classList.add('bg-green-500', 'text-white');
+            } else { // Erros 4xx
+                showFeedbackMessage(result.detail || "Erro ao enviar candidatura.", true);
+                applyButton.disabled = false; 
+                applyButton.textContent = 'Candidatar-se';
+            }
+
+        } catch (error) {
+            console.error("Erro na requisição de candidatura:", error);
+            showFeedbackMessage("Erro de conexão. Tente novamente.", true);
+            applyButton.disabled = false; 
+            applyButton.textContent = 'Candidatar-se';
+        }
+    }
+
+    // --- Adiciona os Event Listeners ---
+    document.addEventListener('DOMContentLoaded', fetchVagas); // Busca vagas ao carregar
+    vagasContainer.addEventListener('click', handleApplyClick); // Escuta cliques nos botões
+
+</script>
+</body>
+</html>

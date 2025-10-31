@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/> <title>Perfil do Candidato - AssisFreela</title> <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style> /* Added style block */
+        body {
+             font-family: 'Plus Jakarta Sans', "Noto Sans", sans-serif;
+             min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body>
+    <div class="relative flex h-auto min-h-screen w-full flex-col bg-[#fcfbf8] justify-between group/design-root overflow-x-hidden">
+        <div>
+            <div class="flex items-center bg-[#fcfbf8] p-4 pb-2 justify-between">
+                <button class="text-[#1c180d] flex size-12 shrink-0 items-center" onclick="history.back()"> <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
+                    </svg>
+                </button>
+                <h2 class="text-[#1c180d] text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Perfil do Candidato</h2>
+            </div>
+
+            <p id="loading-profile-message" class="p-4 text-center text-gray-500">Carregando perfil...</p>
+
+            <div id="profile-container" style="display: none;">
+                <div class="flex p-4 @container">
+                  <div class="flex w-full flex-col gap-4 items-center">
+                    <div class="flex gap-4 flex-col items-center">
+                      <div id="freelancer-avatar" class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32 bg-gray-300 flex items-center justify-center">
+                           <span class="material-symbols-outlined text-gray-500 text-6xl">person</span>
+                           </div>
+                      <div class="flex flex-col items-center justify-center justify-center">
+                        <p id="freelancer-name" class="text-[#1c180d] text-[22px] font-bold leading-tight tracking-[-0.015em] text-center">...</p>
+                        <p class="text-[#9e8947] text-base font-normal leading-normal text-center">Localização não disponível</p>
+                        <p class="text-[#9e8947] text-base font-normal leading-normal text-center">Avaliação: N/A</p>
+                        <p id="freelancer-email" class="text-[#9e8947] text-sm font-normal leading-normal text-center mt-1">...</p>
+                        <p id="freelancer-phone" class="text-[#9e8947] text-sm font-normal leading-normal text-center">...</p>
+                        <a id="freelancer-portfolio-link" href="#" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm mt-1" style="display: none;">Ver Portfólio</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h3 class="text-[#1c180d] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Sobre Mim</h3>
+                <p id="freelancer-bio" class="text-[#1c180d] text-base font-normal leading-normal pb-3 pt-1 px-4">
+                  (Seção "Sobre Mim" não disponível no cadastro atual)
+                </p>
+
+                <h3 class="text-[#1c180d] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Habilidades</h3>
+                <div id="freelancer-skills-container" class="flex gap-3 p-3 flex-wrap pr-4">
+                    <p class="text-sm text-gray-500">(Habilidades não disponíveis no cadastro atual)</p>
+                  </div>
+
+                <h3 class="text-[#1c180d] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Cursos e Certificações</h3>
+                <div class="flex items-center gap-4 bg-[#fcfbf8] px-4 min-h-[72px] py-2 justify-between">
+                    <p class="text-sm text-gray-500">(Seção de Cursos não implementada)</p>
+                </div>
+
+                <h3 class="text-[#1c180d] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Experiências Anteriores</h3>
+                <div class="flex gap-4 bg-[#fcfbf8] px-4 py-3 justify-between">
+                    <p class="text-sm text-gray-500">(Seção de Experiências não implementada)</p>
+                </div>
+
+                <h3 class="text-[#1c180d] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Conquistas</h3>
+                <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                    <p class="text-sm text-gray-500 p-4">(Seção de Conquistas não implementada)</p>
+                </div>
+
+                <div class="flex justify-center">
+                  <div class="flex flex-1 gap-3 max-w-[480px] flex-col items-stretch px-4 py-3">
+                    <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 bg-[#f9bc06] text-[#1c180d] text-base font-bold leading-normal tracking-[0.015em] w-full">
+                      <span class="truncate">Entrar em Contato</span> </button>
+                    <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 bg-[#f4f1e6] text-[#1c180d] text-base font-bold leading-normal tracking-[0.015em] w-full" onclick="history.back()">
+                      <span class="truncate">Voltar</span> </button>
+                  </div>
+                </div>
+            </div> </div> <div>
+            <div class="flex gap-2 border-t border-[#f4f1e6] bg-[#fcfbf8] px-4 pb-3 pt-2">
+                </div>
+            <div class="h-5 bg-[#fcfbf8]"></div>
+        </div>
+
+    </div> <script>
+        const token = localStorage.getItem("accessToken"); // Token do usuário logado (contratante)
+
+        function getFreelancerEmailFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('email');
+        }
+
+        async function fetchAndRenderProfile() {
+            const freelancerEmail = getFreelancerEmailFromUrl();
+            const loadingMessageElement = document.getElementById('loading-profile-message');
+            const profileContainer = document.getElementById('profile-container');
+
+            // Garante que containers existem
+            if (!loadingMessageElement || !profileContainer) {
+                 console.error("Elementos essenciais (loading ou container) não encontrados!");
+                 if(loadingMessageElement) loadingMessageElement.textContent = "Erro na página.";
+                 return;
+            }
+
+            // Esconde conteúdo e mostra loading
+            profileContainer.style.display = 'none';
+            loadingMessageElement.style.display = 'block';
+            loadingMessageElement.textContent = "Carregando perfil..."; // Mensagem padrão
+            loadingMessageElement.style.color = ""; // Reseta cor
+
+            if (!freelancerEmail) {
+                loadingMessageElement.textContent = "Erro: Email do freelancer não encontrado na URL.";
+                loadingMessageElement.style.color = "red";
+                return;
+            }
+            if (!token) {
+                window.location.href = "../login.html"; // Redireciona se não logado
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/freelancers/${freelancerEmail}/profile`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (!response.ok) {
+                    if (response.status === 401 || response.status === 403) {
+                        localStorage.removeItem("accessToken");
+                        window.location.href = "../login.html";
+                    }
+                    const errorData = await response.json().catch(() => ({ detail: `HTTP error! status: ${response.status}` })); // Tenta pegar JSON, senão usa status
+                    throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
+                }
+
+                const freelancer = await response.json();
+
+                // Seleciona os elementos para preencher
+                const nameElement = document.getElementById('freelancer-name');
+                const emailElement = document.getElementById('freelancer-email');
+                const phoneElement = document.getElementById('freelancer-phone');
+                const portfolioElement = document.getElementById('freelancer-portfolio-link');
+                // Adicione outros IDs aqui: bio, skills, etc.
+
+                if (nameElement) nameElement.textContent = freelancer.full_name || 'Nome não informado';
+                if (emailElement) emailElement.textContent = freelancer.email ? `Email: ${freelancer.email}`: ''; // Mostra email se existir
+                if (phoneElement) phoneElement.textContent = freelancer.phone ? `Telefone: ${freelancer.phone}` : ''; // Mostra telefone se existir
+                if (portfolioElement) {
+                    if (freelancer.portfolio) {
+                        portfolioElement.href = freelancer.portfolio.startsWith('http') ? freelancer.portfolio : 'http://' + freelancer.portfolio; // Garante que tem protocolo
+                        portfolioElement.textContent = "Ver Portfólio"; // Texto fixo
+                        portfolioElement.style.display = 'inline'; // Mostra como inline
+                    } else {
+                        portfolioElement.style.display = 'none'; // Esconde se não houver
+                    }
+                }
+                // Preencha outros elementos (bio, skills) aqui se/quando os IDs existirem
+
+                // Esconde loading e mostra o perfil
+                loadingMessageElement.style.display = 'none';
+                profileContainer.style.display = 'block'; // Mostra o container
+
+            } catch (error) {
+                console.error("Erro ao buscar perfil do freelancer:", error);
+                loadingMessageElement.textContent = `Erro ao carregar perfil: ${error.message}`;
+                loadingMessageElement.style.color = "red";
+                profileContainer.style.display = 'none'; // Mantém o container escondido
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchAndRenderProfile);
+    </script>
+    </body>
+</html>

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AssisFreela - Freelancer Command Center Gamificado</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FFB300",
+                        "background-light": "#F5F5F5",
+                        "background-dark": "#121212",
+                        "card-dark": "#1F1F1F",
+                        "text-light": "#000000",
+                        "text-dark": "#FFFFFF",
+                        "xp-bar": "#4CAF50",
+                        "level-gold": "#FFD700",
+                        "mission-accepted": "#2196F3",
+                        "mission-completed": "#4CAF50",
+                        "mission-pending": "#FFC107",
+                        "status-blue-bg": "#E0E7FF",
+                        "status-blue-text": "#3730A3",
+                        "status-yellow-bg": "#FFFBEB",
+                        "status-yellow-text": "#B45309",
+                        "status-gray-bg": "#F3F4F6",
+                        "status-gray-text": "#374151",
+                    },
+                    fontFamily: {
+                        display: ["Montserrat", "sans-serif"],
+                        body: ["Poppins", "sans-serif"],
+                    },
+                    borderRadius: { 'DEFAULT': '0.5rem', },
+                },
+            },
+        };
+    </script>
+    <style type="text/tailwindcss">
+        .font-display { font-family: 'Montserrat', sans-serif; font-weight: 800; }
+        .font-body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-body">
+    
+    <header class="bg-black/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-md">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a class="text-2xl font-display text-white" href="Perfil_Freelancer.html">AssisFreela</a>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a class="text-white hover:text-primary transition-colors" href="Perfil_Freelancer.html">Meu Painel</a>
+                <a class="text-white hover:text-primary transition-colors" href="Vagas_disponíveis.html">Missões</a>
+                <a class="text-white hover:text-primary transition-colors" href="#">Treinamento</a>
+                <a class="text-white hover:text-primary transition-colors" href="#">Notificações <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full">3</span></a>
+                <a classa="text-white hover:text-primary transition-colors" href="#" id="logout-button-header">Sair</a>
+            </nav>
+            <button class="md:hidden text-white">
+                <span class="material-icons">menu</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="pt-20 pb-10">
+        <div class="container mx-auto px-6 mb-8">
+            <div class="bg-white dark:bg-card-dark p-4 rounded-lg shadow-lg flex items-center justify-around overflow-x-auto">
+                
+                <button class="flex flex-col items-center p-2 text-primary focus:outline-none current-tab" data-target="perfil">
+                    <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-1">
+                        <span class="material-symbols-outlined text-3xl text-primary">person</span>
+                    </div>
+                    <span class="text-xs font-semibold">Perfil</span>
+                </button>
+                
+                <a href="Vagas_disponiveis.html" class="flex flex-col items-center p-2 text-gray-500 dark:text-gray-400 hover:text-primary focus:outline-none">
+                    <div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mb-1">
+                        <span class="material-symbols-outlined text-3xl">work</span>
+                    </div>
+                    <span class="text-xs font-semibold">Vagas Rec.</span>
+                </a>
+                
+                <a href="Vagas_disponiveis.html" class="flex flex-col items-center p-2 text-gray-500 dark:text-gray-400 hover:text-primary focus:outline-none">
+                    <div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mb-1">
+                        <span class="material-symbols-outlined text-3xl">search</span>
+                    </div>
+                    <span class="text-xs font-semibold">Vagas Disp.</span>
+                </a>
+                
+                <button class="flex flex-col items-center p-2 text-gray-500 dark:text-gray-400 hover:text-primary focus:outline-none" data-target="cursos">
+                    <div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mb-1">
+                        <span class="material-symbols-outlined text-3xl">school</span>
+                    </div>
+                    <span class="text-xs font-semibold">Cursos</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <aside class="lg:col-span-1 space-y-8">
+
+                <div class="bg-white dark:bg-card-dark p-6 rounded-lg shadow-lg relative overflow-hidden tab-content" id="perfil-carousel-content">
+                    <div class="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-br from-primary to-yellow-600 rounded-t-lg opacity-30"></div>
+                    <h3 class="text-xl font-display mb-4 text-text-light dark:text-text-dark z-10 relative">Meu Avatar</h3>
+                    <div class="flex flex-col items-center z-10 relative">
+                        <img id="freelancer-avatar-img" alt="User Profile Picture" class="w-28 h-28 rounded-full mb-4 object-cover border-4 border-primary shadow-lg bg-gray-300" src="" />
+                        <h4 id="freelancer-name" class="text-xl font-semibold text-text-light dark:text-text-dark">Carregando...</h4>
+                        <p id="freelancer-location" class="text-gray-500 dark:text-gray-400 text-sm">...</p>
+                        
+                        <div class="flex items-center text-level-gold mt-2">
+                            <span class="material-icons text-xl">star_outline</span>
+                            <span class="text-sm ml-1 font-bold">Nível 1</span>
+                        </div>
+                        <div class="mt-4 w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                            <div class="bg-xp-bar h-3 rounded-full" style="width: 10%;"></div>
+                        </div>
+                        <div class="flex justify-between w-full text-xs text-gray-600 dark:text-gray-400 mt-1">
+                            <span>XP: 0/100</span>
+                        </div>
+                        
+                        <div id="freelancer-skills-list" class="mt-4 flex flex-wrap justify-center gap-2">
+                            </div>
+                        
+                        <a id="btn-personalizar-avatar" class="mt-4 bg-primary text-black font-semibold px-5 py-2 rounded-lg hover:bg-yellow-400 transition-colors shadow-md cursor-pointer" href="#">Personalizar Avatar</a>
+                        <input type="file" id="avatar-upload-input" class="hidden" accept="image/png, image/jpeg, image/jpg">
+
+                         <a id="edit-profile-link" class="mt-2 text-primary hover:underline text-sm flex items-center justify-center" href="Editar_Perfil_Freelancer.html">
+                            <span class="material-symbols-outlined text-base mr-1">edit</span> Editar Perfil
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-card-dark p-6 rounded-lg shadow-lg hidden tab-content" id="cursos-carousel-content">
+                    <h3 class="text-xl font-display mb-4 text-text-light dark:text-text-dark flex items-center">
+                        <span class="material-symbols-outlined mr-2">school</span> Últimos Cursos
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center bg-gray-100 dark:bg-gray-700 p-3 rounded-lg shadow-sm">
+                            <span class="material-symbols-outlined text-primary mr-3 text-2xl">book</span>
+                            <div class="flex-1">
+                                <p class="font-semibold text-text-light dark:text-text-dark">Marketing Digital para Freelancers</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">Aprenda a divulgar seu trabalho.</p>
+                            </div>
+                            <button class="bg-primary text-black px-3 py-1 rounded-lg text-sm hover:bg-yellow-400 transition-colors shadow-sm">
+                                <span class="material-symbols-outlined text-sm">play_circle</span> Iniciar
+                            </button>
+                        </div>
+                    </div>
+                    <a class="mt-4 block text-primary hover:underline text-sm flex items-center" href="#">
+                        <span class="material-symbols-outlined text-base mr-1">library_books</span> Explorar mais treinamentos
+                    </a>
+                </div>
+
+                <div class="bg-white dark:bg-card-dark p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-display mb-4 text-text-light dark:text-text-dark flex items-center">
+                        <span class="material-symbols-outlined mr-2">military_tech</span> Conquistas Desbloqueadas
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-text-light dark:text-text-dark">
+                            <span class="material-symbols-outlined text-primary mr-3 text-2xl">workspace_premium</span>
+                            <div class="flex-1">
+                                <p class="font-semibold">Primeira Missão</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Conclua seu primeiro freela.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="mt-4 text-primary hover:underline text-sm flex items-center">
+                        <span class="material-symbols-outlined text-base mr-1">add_circle</span> Ver todas as conquistas
+                    </button>
+                </div>
+                <div class="bg-primary p-6 rounded-lg shadow-lg text-black">
+                    <h3 class="text-xl font-display mb-4 flex items-center">
+                        <span class="material-symbols-outlined mr-2">send_spark</span> Comunicação Rápida
+                    </h3>
+                    <p class="text-sm mb-4">Está livre para uma 'missão' rápida?</p>
+                    <textarea class="w-full p-2 rounded-lg border border-gray-300 focus:ring-primary focus:border-primary text-black" placeholder="Ex: 'Disponível para freelas...'" rows="3"></textarea>
+                    <button class="mt-4 w-full bg-black text-primary font-semibold px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors flex items-center justify-center shadow-md">
+                        <span class="material-symbols-outlined mr-2">campaign</span> Anunciar
+                    </button>
+                </div>
+            </aside>
+
+            <section class="lg:col-span-2 space-y-8">
+                <div class="bg-white dark:bg-card-dark p-6 rounded-lg shadow-lg">
+                    <h2 class="text-2xl font-display mb-6 text-text-light dark:text-text-dark flex items-center">
+                        <span class="material-symbols-outlined mr-3 text-3xl">assignment</span> Minhas Missões
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark flex items-center">
+                                <span class="material-symbols-outlined mr-2">work</span> Missões Ativas
+                            </h3>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full bg-background-light dark:bg-card-dark rounded-lg">
+                                    <thead>
+                                        <tr class="bg-gray-200 dark:bg-gray-700 text-left text-sm font-semibold">
+                                            <th class="py-3 px-4 rounded-tl-lg">Missão</th>
+                                            <th class="py-3 px-4">Patrocinador</th>
+                                            <th class="py-3 px-4">Status</th>
+                                            <th class="py-3 px-4 rounded-tr-lg">Ação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="missoes-ativas-tbody" class="divide-y divide-gray-200 dark:divide-gray-700">
+                                        <tr><td colspan="4" class="py-3 px-4 text-center text-gray-500">Carregando missões...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button class="mt-4 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition-colors shadow-md flex items-center justify-center">
+                                <span class="material-symbols-outlined mr-2">view_list</span> Ver Mais Missões
+                            </button>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark flex items-center">
+                                <span class="material-symbols-outlined mr-2">front_hand</span> Aplicações Pendentes
+                            </h3>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full bg-background-light dark:bg-card-dark rounded-lg">
+                                    <thead>
+                                        <tr class="bg-gray-200 dark:bg-gray-700 text-left text-sm font-semibold">
+                                            <th class="py-3 px-4 rounded-tl-lg">Vaga</th>
+                                            <th class="py-3 px-4">Patrocinador</th>
+                                            <th class="py-3 px-4">Status</th>
+                                            <th class="py-3 px-4 rounded-tr-lg">Ação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="aplicacoes-pendentes-tbody" class="divide-y divide-gray-200 dark:divide-gray-700">
+                                        <tr><td colspan="4" class="py-3 px-4 text-center text-gray-500">Carregando aplicações...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button class="mt-4 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition-colors shadow-md flex items-center justify-center">
+                                <span class="material-symbols-outlined mr-2">history</span> Ver Mais Aplicações
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-card-dark p-6 rounded-lg shadow-lg">
+                    <h2 class="text-2xl font-display mb-6 text-text-light dark:text-text-dark flex items-center">
+                        <span class="material-symbols-outlined mr-2 text-3xl">leaderboard</span> Desempenho & Recompensas
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Ganhos Mensais</h3>
+                            </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Avaliações Recebidas</h3>
+                            </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white dark:bg-card-dark p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-display mb-4">Treinamentos Concluídos</h3>
+                        </div>
+                    <div class="bg-white dark:bg-card-dark p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-display mb-4">Testemunhos & Feedback</h3>
+                        </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-display mb-4">AssisFreela</h3>
+            <div class="flex justify-center space-x-6 mb-6">
+                <a class="hover:text-primary transition-colors" href="#">Meu Painel</a>
+                <a class="hover:text-primary transition-colors" href="#">Missões</a>
+                <a class="hover:text-primary transition-colors" href="#">Treinamento</a>
+            </div>
+            <p class="text-gray-400">AssisFreela — Conectando talentos e oportunidades locais.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 1. LÓGICA DAS ABAS (Corrigida) ---
+            const tabButtons = document.querySelectorAll('.flex-col.items-center[data-target]');
+            
+            // ATUALIZAÇÃO AQUI: "vagas-recomendadas" e "vagas-disponiveis" removidos
+            const tabContents = {
+                'perfil': document.getElementById('perfil-carousel-content'),
+                'cursos': document.getElementById('cursos-carousel-content')
+            };
+
+            function showTab(tabId) {
+                Object.values(tabContents).forEach(content => {
+                    if (content) content.classList.add('hidden');
+                });
+                if (tabContents[tabId]) {
+                    tabContents[tabId].classList.remove('hidden');
+                }
+                
+                // Atualiza o estilo apenas dos botões que são de fato abas
+                tabButtons.forEach(button => {
+                    const buttonDiv = button.querySelector('div');
+                    const buttonIcon = buttonDiv ? buttonDiv.querySelector('span.material-symbols-outlined') : null;
+
+                    button.classList.remove('text-primary', 'focus:outline-none', 'current-tab');
+                    button.classList.add('text-gray-500', 'dark:text-gray-400', 'hover:text-primary');
+                    
+                    if (buttonDiv) {
+                        buttonDiv.classList.remove('bg-primary/20');
+                        buttonDiv.classList.add('bg-gray-200', 'dark:bg-gray-700');
+                    }
+                    if (buttonIcon) {
+                        buttonIcon.classList.remove('text-primary');
+                    }
+                });
+                
+                const activeButton = document.querySelector(`[data-target="${tabId}"]`);
+                
+                if (activeButton) {
+                    const activeDiv = activeButton.querySelector('div');
+                    const activeIcon = activeDiv ? activeDiv.querySelector('span.material-symbols-outlined') : null;
+
+                    activeButton.classList.add('text-primary', 'focus:outline-none', 'current-tab');
+                    
+                    if (activeDiv) {
+                        activeDiv.classList.add('bg-primary/20');
+                        activeDiv.classList.remove('bg-gray-200', 'dark:bg-gray-700');
+                    }
+                    if (activeIcon) {
+                        activeIcon.classList.add('text-primary');
+                    }
+                }
+            }
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetTab = button.dataset.target;
+                    if(targetTab) showTab(targetTab);
+                });
+            });
+            showTab('perfil'); // Aba padrão
+
+
+            // --- 2. VERIFICAÇÃO DE LOGIN E TOKEN (Sem alteração) ---
+            const token = localStorage.getItem("accessToken");
+            if (!token || localStorage.getItem("userRole") !== 'FREELANCER') {
+                localStorage.clear();
+                window.location.href = "login.html"; 
+                return; 
+            }
+
+            // --- 3. DEFINIÇÃO DAS FUNÇÕES DE CARREGAMENTO DE DADOS (Sem alteração) ---
+
+            async function carregarInfoFreelancer(token) {
+                const nameElement = document.getElementById('freelancer-name');
+                const locationElement = document.getElementById('freelancer-location');
+                const editProfileLink = document.getElementById('edit-profile-link');
+                const skillsListElement = document.getElementById('freelancer-skills-list');
+                const avatarImg = document.getElementById('freelancer-avatar-img');
+
+                if (!nameElement || !locationElement || !avatarImg || !skillsListElement || !editProfileLink) {
+                    console.error("Um ou mais elementos do perfil (nome, local, avatar, skills, link editar) não foram encontrados!");
+                    return;
+                }
+
+                try {
+                    const response = await fetch("http://127.0.0.1:8000/users/me/freelancer", {
+                        headers: { "Authorization": `Bearer ${token}` }
+                    });
+
+                    if (!response.ok) {
+                        if (response.status === 401 || response.status === 403) {
+                            localStorage.clear();
+                            window.location.href = "login.html";
+                        }
+                        throw new Error(`Falha ao carregar perfil: ${response.status} ${response.statusText}`);
+                    }
+                    const freelancer = await response.json();
+
+                    nameElement.textContent = freelancer.full_name || "Nome não disponível";
+                    locationElement.textContent = "Assis, SP (Exemplo)"; 
+                    
+                    if (freelancer.avatar_url) {
+                        if (freelancer.avatar_url.startsWith('http')) {
+                            avatarImg.src = freelancer.avatar_url;
+                        } else if (freelancer.avatar_url.startsWith('/static')) {
+                            avatarImg.src = `http://127.0.0.1:8000${freelancer.avatar_url}`;
+                        } else {
+                            avatarImg.src = ""; 
+                        }
+                    } else {
+                        avatarImg.src = ""; 
+                    }
+
+                    skillsListElement.innerHTML = ''; 
+                    if (freelancer.skills && Array.isArray(freelancer.skills) && freelancer.skills.length > 0) {
+                        freelancer.skills.forEach(skill => {
+                            const skillBadge = document.createElement('span');
+                            skillBadge.className = "bg-blue-600 text-white text-xs px-3 py-1 rounded-full flex items-center shadow-md";
+                            skillBadge.innerHTML = `<span class="material-symbols-outlined text-sm mr-1">school</span> ${skill}`;
+                            skillsListElement.appendChild(skillBadge);
+                        });
+                    } else {
+                        skillsListElement.innerHTML = '<span class="text-xs text-gray-500 italic">Nenhuma habilidade adicionada.</span>';
+                    }
+
+                } catch (error) {
+                    console.error("Erro detalhado ao carregar perfil:", error);
+                    nameElement.textContent = "Erro";
+                    locationElement.textContent = "Erro";
+                }
+            }
+
+            async function carregarAplicacoesPendentes(token) {
+                const tbody = document.getElementById('aplicacoes-pendentes-tbody');
+                if (!tbody) {
+                    console.error("Elemento tbody 'aplicacoes-pendentes-tbody' não encontrado.");
+                    return;
+                }
+                tbody.innerHTML = '<tr><td colspan="4" class="py-3 px-4 text-center text-gray-500">Carregando aplicações...</td></tr>';
+
+                try {
+                    const response = await fetch("http://127.0.0.1:8000/vagas/me/applied", {
+                        headers: { "Authorization": `Bearer ${token}` }
+                    });
+                    if (!response.ok) { throw new Error(`Falha ao buscar aplicações: ${response.statusText}`); }
+
+                    const vagasAplicadas = await response.json();
+                    tbody.innerHTML = ''; 
+
+                    if (!Array.isArray(vagasAplicadas) || vagasAplicadas.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="4" class="py-3 px-4 text-center text-gray-500">Nenhuma aplicação pendente encontrada.</td></tr>';
+                        return;
+                    }
+
+                    vagasAplicadas.forEach(vaga => {
+                        const nomeEmpresa = vaga.owner_email ? vaga.owner_email.split('@')[0] : 'Empresa Desconhecida';
+                        const rowHtml = `
+                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                            <td class="py-3 px-4">${vaga.titulo || 'Título não disponível'}</td>
+                            <td class="py-3 px-4 text-gray-500 dark:text-gray-400">${nomeEmpresa}</td>
+                            <td class="py-3 px-4">
+                                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-sm mr-1">pending_actions</span> Em Análise
+                                </span>
+                            </td>
+                            <td class="py-3 px-4">
+                                <button 
+                                    class="text-red-500 hover:underline text-sm flex items-center btn-cancelar-aplicacao"
+                                    data-vaga-id="${vaga.id}" 
+                                    title="Cancelar candidatura para ${vaga.titulo || ''}">
+                                    <span class="material-symbols-outlined text-sm mr-1">cancel</span> Cancelar
+                                </button>
+                            </td>
+                        </tr>`;
+                        tbody.insertAdjacentHTML('beforeend', rowHtml);
+                    });
+
+                    tbody.querySelectorAll('.btn-cancelar-aplicacao').forEach(button => {
+                        button.addEventListener('click', async (event) => {
+                            const targetButton = event.currentTarget;
+                            const vagaId = targetButton.dataset.vagaId;
+                            if (!vagaId) return;
+                            
+                            if (!confirm(`Tem certeza que deseja cancelar sua candidatura para a vaga "${targetButton.closest('tr').cells[0].textContent}"?`)) {
+                                return;
+                            }
+                            
+                            targetButton.disabled = true;
+                            targetButton.innerHTML = '<span class="material-symbols-outlined text-sm mr-1 animate-spin">progress_activity</span> Cancelando...';
+
+                            try {
+                                const cancelResponse = await fetch(`http://127.0.0.1:8000/vagas/${vagaId}/cancel_apply`, {
+                                    method: 'DELETE',
+                                    headers: { "Authorization": `Bearer ${token}` }
+                                });
+                                
+                                if (!cancelResponse.ok) {
+                                    const errorResult = await cancelResponse.json();
+                                    throw new Error(errorResult.detail || `Erro ${cancelResponse.status}`);
+                                }
+                                
+                                alert('Candidatura cancelada com sucesso!');
+                                targetButton.closest('tr').remove();
+                                if (tbody.rows.length === 0) {
+                                    tbody.innerHTML = '<tr><td colspan="4" class="py-3 px-4 text-center text-gray-500">Nenhuma aplicação pendente encontrada.</td></tr>';
+                                }
+
+                            } catch (error) {
+                                console.error('Erro ao cancelar aplicação:', error);
+                                alert(`Erro ao cancelar: ${error.message}`);
+                                targetButton.disabled = false;
+                                targetButton.innerHTML = '<span class="material-symbols-outlined text-sm mr-1">cancel</span> Cancelar';
+                            }
+                        });
+                    });
+
+                } catch (error) {
+                    console.error("Erro ao carregar aplicações pendentes:", error);
+                    tbody.innerHTML = `<tr><td colspan="4" class="py-3 px-4 text-center text-red-500">Erro ao carregar aplicações.</td></tr>`;
+                }
+            }
+
+            async function carregarMissoesAtivas(token) {
+                const tbody = document.getElementById('missoes-ativas-tbody');
+                if (!tbody) {
+                    console.error("Elemento tbody 'missoes-ativas-tbody' não encontrado.");
+                    return;
+                }
+                tbody.innerHTML = '<tr><td colspan="4" class="py-3 px-4 text-center text-gray-500">Carregando missões...</td></tr>';
+
+                try {
+                    const response = await fetch("http://127.0.0.1:8000/vagas/me/active_freelancer", {
+                        headers: { "Authorization": `Bearer ${token}` }
+                    });
+                    if (!response.ok) { throw new Error(`Falha ao buscar missões ativas: ${response.statusText}`); }
+
+                    const vagasAtivas = await response.json();
+                    tbody.innerHTML = '';
+
+                    if (!Array.isArray(vagasAtivas) || vagasAtivas.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="4" class="py-3 px-4 text-center text-gray-500">Nenhuma missão ativa no momento.</td></tr>';
+                        return;
+                    }
+
+                    vagasAtivas.forEach(vaga => {
+                        const nomeEmpresa = vaga.owner_email ? vaga.owner_email.split('@')[0] : 'Empresa Desconhecida';
+                        const rowHtml = `
+                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                            <td class="py-3 px-4">${vaga.titulo || 'Título não disponível'}</td>
+                            <td class="py-3 px-4 text-gray-500 dark:text-gray-400">${nomeEmpresa}</td>
+                            <td class="py-3 px-4">
+                                <span class="bg-mission-accepted text-white text-xs font-medium px-2.5 py-0.5 rounded-full flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-sm mr-1">check_circle</span> Missão Aceita
+                                </span>
+                            </td>
+                            <td class="py-3 px-4">
+                                <a href="Detalhes_Missao.html?vagaId=${vaga.id}" 
+                                   class="text-primary hover:underline text-sm flex items-center"
+                                   title="Ver detalhes da missão ${vaga.titulo || ''}">
+                                    <span class="material-symbols-outlined text-sm mr-1">info</span> Detalhes
+                                </a>
+                            </td>
+                        </tr>`;
+                        tbody.insertAdjacentHTML('beforeend', rowHtml);
+                    });
+                } catch (error) {
+                    console.error("Erro ao carregar missões ativas:", error);
+                    tbody.innerHTML = `<tr><td colspan="4" class="py-3 px-4 text-center text-red-500">Erro ao carregar missões.</td></tr>`;
+                }
+            }
+
+            // --- 4. LÓGICA DE UPLOAD DE AVATAR (Sem alteração) ---
+            const btnPersonalizarAvatar = document.getElementById('btn-personalizar-avatar');
+            const avatarUploadInput = document.getElementById('avatar-upload-input');
+            const avatarImgDisplay = document.getElementById('freelancer-avatar-img');
+
+            if (btnPersonalizarAvatar && avatarUploadInput && avatarImgDisplay) {
+                
+                btnPersonalizarAvatar.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    avatarUploadInput.click();
+                });
+
+                avatarUploadInput.addEventListener('change', async (e) => {
+                    const file = e.target.files[0];
+                    if (!file) return;
+                    
+                    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+                    if (!allowedTypes.includes(file.type)) {
+                        alert('Formato de arquivo inválido. Por favor, selecione JPG, JPEG ou PNG.');
+                        e.target.value = null;
+                        return;
+                    }
+                    const maxSizeInBytes = 5 * 1024 * 1024; // 5MB
+                    if (file.size > maxSizeInBytes) {
+                        alert('Arquivo muito grande. O tamanho máximo é 5MB.');
+                        e.target.value = null;
+                        return;
+                    }
+
+                    const originalButtonText = btnPersonalizarAvatar.textContent;
+                    btnPersonalizarAvatar.innerHTML = '<span class="material-symbols-outlined text-sm mr-1 animate-spin">progress_activity</span> Salvando...';
+                    btnPersonalizarAvatar.style.pointerEvents = 'none';
+
+                    const formData = new FormData();
+                    formData.append("file", file);
+
+                    try {
+                        const response = await fetch("http://127.0.0.1:8000/users/me/avatar", {
+                            method: "POST",
+                            headers: { "Authorization": `Bearer ${token}` },
+                            body: formData
+                        });
+
+                        const updatedProfile = await response.json();
+                        if (!response.ok) {
+                            throw new Error(updatedProfile.detail || `Erro ${response.status}`);
+                        }
+
+                        if (updatedProfile.avatar_url) {
+                             if (updatedProfile.avatar_url.startsWith('http')) {
+                                avatarImgDisplay.src = updatedProfile.avatar_url;
+                            } else if (updatedProfile.avatar_url.startsWith('/static')) {
+                                avatarImgDisplay.src = `http://127.0.0.1:8000${updatedProfile.avatar_url}?t=${new Date().getTime()}`;
+                            }
+                        }
+
+                    } catch (error) {
+                        console.error("Erro ao fazer upload do avatar:", error);
+                        alert(`Erro ao atualizar avatar: ${error.message}`);
+                    } finally {
+                        btnPersonalizarAvatar.innerHTML = originalButtonText;
+                        btnPersonalizarAvatar.style.pointerEvents = 'auto';
+                        e.target.value = null;
+                    }
+                });
+            } else {
+                console.error("Elementos para upload de avatar (botão, input ou img) não encontrados.");
+            }
+
+            // --- 5. LÓGICA DE LOGOUT (Sem alteração) ---
+            const logoutButton = document.getElementById("logout-button-header");
+            if (logoutButton) {
+                logoutButton.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    if (confirm("Tem certeza que deseja sair?")) {
+                        localStorage.clear();
+                        window.location.href = "login.html"; 
+                    }
+                });
+            } else {
+                console.warn("Botão de logout não encontrado.");
+            }
+
+            // --- 6. CHAMADA INICIAL DAS FUNÇÕES (Sem alteração) ---
+            carregarInfoFreelancer(token);
+            carregarAplicacoesPendentes(token);
+            carregarMissoesAtivas(token);
+
+        }); // Fim do DOMContentLoaded
+    </script>
+
+</body>
+</html>

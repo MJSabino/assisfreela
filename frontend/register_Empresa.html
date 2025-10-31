@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link rel="stylesheet" as="style" onload="this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Work+Sans%3Awght%40400%3B500%3B700%3B900" />
+    <title>AssisFreela</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+
+<body class="bg-[#fcfbf8] font-[Work Sans] flex flex-col min-h-screen">
+    <header class="flex items-center justify-center border-b border-[#f4f1e6] py-3">
+        <div class="flex items-center gap-4 text-[#1c190d]">
+            <div class="size-6">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z"
+                      fill="currentColor"
+                    ></path>
+                </svg>
+            </div>
+            <h2 class="text-lg font-bold">AssisFreela</h2>
+        </div>
+    </header>
+
+    <main class="flex flex-1 items-center justify-center px-4 py-10">
+        <div class="w-full max-w-[480px] bg-white rounded-2xl shadow-md p-8 text-center border border-[#e9e3ce]">
+            <h2 class="text-[#1c190d] text-[28px] font-bold leading-tight pb-3">Cadastre sua empresa</h2>
+            <p class="text-[#1c190d] text-base font-normal pb-6">Conecte-se com talentos locais e impulsione seu negócio.</p>
+
+            <form id="register-form" class="space-y-4">
+                <div>
+                    <input id="company-name" placeholder="Nome da Empresa"
+                        class="w-full h-14 rounded-lg border border-[#e9e3ce] p-4 placeholder:text-[#9e8d47] focus:ring-0 focus:border-[#f9c806]" />
+                </div>
+
+                <div>
+                    <input id="company-cnpj" placeholder="CNPJ" 
+                        class="w-full h-14 rounded-lg border border-[#e9e3ce] p-4 placeholder:text-[#9e8d47] focus:ring-0 focus:border-[#f9c806]" />
+                </div>
+
+                <div>
+                    <input id="company-address" placeholder="Endereço completo"
+                        class="w-full h-14 rounded-lg border border-[#e9e3ce] p-4 placeholder:text-[#9e8d47] focus:ring-0 focus:border-[#f9c806]" />
+                </div>
+
+                <div>
+                    <input id="company-phone" placeholder="Telefone comercial"
+                        class="w-full h-14 rounded-lg border border-[#e9e3ce] p-4 placeholder:text-[#9e8d47] focus:ring-0 focus:border-[#f9c806]" />
+                </div>
+
+                <div>
+                    <input id="company-email" type="email" placeholder="E-mail corporativo"
+                        class="w-full h-14 rounded-lg border border-[#e9e3ce] p-4 placeholder:text-[#9e8d47] focus:ring-0 focus:border-[#f9c806]" />
+                </div>
+
+                <div>
+                    <input id="company-password" type="password" placeholder="Senha"
+                        class="w-full h-14 rounded-lg border border-[#e9e3ce] p-4 placeholder:text-[#9e8d47] focus:ring-0 focus:border-[#f9c806]" />
+                </div>
+
+                <div>
+                    <input id="company-password-confirm" type="password" placeholder="Confirme sua senha"
+                        class="w-full h-14 rounded-lg border border-[#e9e3ce] p-4 placeholder:text-[#9e8d47] focus:ring-0 focus:border-[#f9c806]" />
+                </div>
+
+                <div>
+                    <select id="company-industry"
+                        class="w-full h-14 rounded-lg border border-[#e9e3ce] p-4 text-[#1c190d] focus:ring-0 focus:border-[#f9c806]">
+                        <option value="">Área de atuação</option>
+                        <option value="Tecnologia">Tecnologia</option>
+                        <option value="Design">Design</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center justify-center gap-2">
+                    <input id="company-terms" type="checkbox"
+                        class="h-5 w-5 rounded border-[#e9e3ce] text-[#f9c806] focus:ring-0 focus:border-[#f9c806]" />
+                    <label for="company-terms" class="text-[#1c190d] text-sm">Aceito os termos e condições</label>
+                </div>
+
+                <p id="register-error" class="text-red-600 text-sm text-center"></p>
+
+                <button id="register-button" type="button"
+                    class="w-full h-12 rounded-lg bg-[#f9c806] text-[#1c190d] font-bold hover:opacity-90 transition">
+                    Cadastrar Empresa
+                </button>
+
+                <p class="text-[#9e8d47] text-sm underline cursor-pointer">Já tenho conta</p>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.getElementById('register-button');
+            const errorElement = document.getElementById('register-error');
+            const companyNameInput = document.getElementById('company-name');
+            const cnpjInput = document.getElementById('company-cnpj');
+            const addressInput = document.getElementById('company-address');
+            const phoneInput = document.getElementById('company-phone');
+            const emailInput = document.getElementById('company-email');
+            const passwordInput = document.getElementById('company-password');
+            const passwordConfirmInput = document.getElementById('company-password-confirm');
+            const industryInput = document.getElementById('company-industry');
+            const termsInput = document.getElementById('company-terms');
+
+            button.addEventListener('click', async () => {
+                errorElement.textContent = '';
+                const password = passwordInput.value;
+                const passwordConfirm = passwordConfirmInput.value;
+                const email = emailInput.value; // Pegamos o email aqui
+
+                if (password !== passwordConfirm) {
+                    errorElement.textContent = 'As senhas não conferem.';
+                    return;
+                }
+                if (!termsInput.checked) {
+                    errorElement.textContent = 'Você precisa aceitar os termos e condições.';
+                    return;
+                }
+
+                const dataToSend = {
+                    company_name: companyNameInput.value,
+                    cnpj: cnpjInput.value,
+                    address: addressInput.value,
+                    phone: phoneInput.value,
+                    email: email, // Usamos a variável
+                    password: password,
+                    industry: industryInput.value
+                };
+
+                try {
+                    // --- PASSO 1: TENTAR O CADASTRO ---
+                    const registerResponse = await fetch('http://127.0.0.1:8000/register/contratante', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(dataToSend)
+                    });
+
+                    const registerData = await registerResponse.json();
+                    if (!registerResponse.ok) {
+                        // Se o cadastro falhar (ex: email já existe)
+                        throw new Error(registerData.detail || 'Erro ao cadastrar empresa.');
+                    }
+                    
+                    // --- PASSO 2: CADASTRO OK! FAZER AUTO-LOGIN ---
+                    console.log('Cadastro bem-sucedido. Tentando login automático...');
+
+                    const loginResponse = await fetch('http://127.0.0.1:8000/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        // Usamos o email e senha que o usuário acabou de digitar
+                        body: JSON.stringify({ email: email, password: password })
+                    });
+                    
+                    const loginData = await loginResponse.json();
+                    
+                    if (!loginResponse.ok) {
+                        // Se o login falhar (o que não deve acontecer se o cadastro deu certo)
+                        // Apenas avisamos e mandamos para o login manual.
+                        alert('Cadastro criado com sucesso! Faça o login para continuar.');
+                        window.location.href = 'Login.html';
+                        return;
+                    }
+                    
+                    // --- PASSO 3: LOGIN OK! SALVAR TOKEN E REDIRECIONAR ---
+                    console.log('Login automático bem-sucedido. Salvando token...');
+                    localStorage.setItem('access_token', loginData.access_token);
+                    localStorage.setItem('username', loginData.username);
+                    localStorage.setItem('role', loginData.role);
+
+                    // Redireciona para o perfil da empresa
+                    window.location.href = 'Perfil_Empresa.html'; 
+
+                } catch (error) {
+                    console.error('Erro no processo de cadastro/login:', error);
+                    errorElement.textContent = error.message;
+                }
+            });
+        });
+    </script>
+    </body>
+</html>

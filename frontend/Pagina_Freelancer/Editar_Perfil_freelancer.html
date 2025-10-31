@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil - AssisFreela</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        /* COR CORRIGIDA AQUI */
+                        'assis-yellow': '#FFB300', // Cor unificada do painel
+                        'assis-border': '#E0E0E0', 
+                        'assis-subtitle': '#888888', 
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'], 
+                    },
+                    borderRadius: {
+                        'xl': '12px', 
+                        'lg': '8px',  
+                    },
+                    boxShadow: {
+                        'suave': '0 4px 12px rgba(0, 0, 0, 0.05)', 
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/css">
+        .progress-circle {
+            background: conic-gradient(
+                /* COR CORRIGIDA AQUI */
+                #FFB300 calc(var(--progress) * 1%), 
+                #E5E7EB 0 
+            );
+        }
+    </style>
+
+</head>
+<body class="bg-white text-black font-sans antialiased">
+
+    <div class="max-w-4xl mx-auto p-4 md:p-8">
+        
+        <header class="text-left mb-8 pb-5 border-b border-assis-border">
+            
+            <a href="Perfil_Freelancer.html" class="inline-flex items-center text-sm font-medium text-assis-subtitle hover:text-black mb-3 group">
+                <i class="fas fa-arrow-left mr-2 transition-transform group-hover:-translate-x-1"></i>
+                Voltar para o Painel
+            </a>
+            
+            <h1 class="text-4xl font-bold text-black flex items-center">
+                Editar Perfil
+                <i class="fas fa-pencil-alt text-assis-yellow ml-3"></i>
+            </h1>
+            <p class="text-base text-assis-subtitle mt-1">Atualize suas informações e mantenha seu perfil sempre completo.</p>
+        </header>
+
+        <main class="space-y-6">
+
+            <section class="bg-white border border-assis-border rounded-xl shadow-suave p-6 md:p-8">
+                <h2 class="text-2xl font-semibold mb-6">Dados Pessoais</h2>
+                <form id="personal-data-form" class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+                    
+                    <div class="flex flex-col">
+                        <label for="nome" class="text-sm font-semibold mb-1">Nome completo</label>
+                        <input type="text" id="nome" name="nome" class="border border-assis-border rounded-lg p-3 focus:ring-2 focus:ring-assis-yellow focus:outline-none">
+                    </div>
+                    
+                    <div class="flex flex-col">
+                        <label for="nascimento" class="text-sm font-semibold mb-1">Data de nascimento</label>
+                        <input type="date" id="nascimento" name="nascimento" class="border border-assis-border rounded-lg p-3 focus:ring-2 focus:ring-assis-yellow focus:outline-none">
+                    </div>
+
+                    <div class="flex flex-col">
+                        <label for="email" class="text-sm font-semibold mb-1">E-mail</label>
+                        <input type="email" id="email" name="email" class="border border-assis-border rounded-lg p-3 focus:ring-2 focus:ring-assis-yellow focus:outline-none">
+                    </div>
+
+                    <div class="flex flex-col">
+                        <label for="telefone" class="text-sm font-semibold mb-1">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" class="border border-assis-border rounded-lg p-3 focus:ring-2 focus:ring-assis-yellow focus:outline-none">
+                    </div>
+
+                    <div class="flex flex-col md:col-span-2">
+                        <label for="endereco" class="text-sm font-semibold mb-1">Endereço (bairro e cidade)</label>
+                        <input type="text" id="endereco" name="endereco" class="border border-assis-border rounded-lg p-3 focus:ring-2 focus:ring-assis-yellow focus:outline-none">
+                    </div>
+
+                    <div class="flex flex-col">
+                        <label for="documento" class="text-sm font-semibold mb-1">Documento (CPF ou RG)</label>
+                        <input type="text" id="documento" name="documento" class="border border-assis-border rounded-lg p-3 focus:ring-2 focus:ring-assis-yellow focus:outline-none">
+                    </div>
+
+                    <div class="md:col-span-2 text-right mt-4">
+                        <button type="submit" class="btn-save bg-assis-yellow text-black font-semibold py-2 px-6 rounded-lg transition-transform transform hover:-translate-y-0.5 hover:shadow-md">
+                            Salvar Dados
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="bg-white border border-assis-border rounded-xl shadow-suave p-6 md:p-8">
+                <h2 class="text-2xl font-semibold mb-6">Minhas Habilidades</h2>
+                
+                <div class="flex flex-col sm:flex-row gap-3 mb-5">
+                    <input type="text" id="skill-input" placeholder="Ex: fazer drinks, cozinhar, servir eventos, limpeza, entrega…" class="flex-grow border border-assis-border rounded-lg p-3 focus:ring-2 focus:ring-assis-yellow focus:outline-none">
+                    <button type="button" id="add-skill-btn" class="bg-black text-white font-semibold py-3 px-6 rounded-lg transition-transform transform hover:-translate-y-0.5 hover:shadow-md whitespace-nowrap">
+                        Adicionar Habilidade
+                    </button>
+                </div>
+
+                <ul id="skills-list" class="flex flex-wrap gap-3 list-none p-0 m-0">
+                    </ul>
+            </section>
+
+            <section class="bg-white border border-assis-border rounded-xl shadow-suave p-6 md:p-8">
+                <h2 class="text-2xl font-semibold mb-6">Áreas de Interesse</h2>
+                <form id="interests-form" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        
+                        <div class="flex items-center bg-gray-50 border border-assis-border p-3 rounded-lg">
+                            <input type="checkbox" id="gastronomia" class="w-5 h-5 text-assis-yellow rounded border-gray-300 focus:ring-assis-yellow">
+                            <label for="gastronomia" class="ml-3 font-medium text-black">Gastronomia 🍽️</label>
+                        </div>
+                        <div class="flex items-center bg-gray-50 border border-assis-border p-3 rounded-lg">
+                            <input type="checkbox" id="eventos" class="w-5 h-5 text-assis-yellow rounded border-gray-300 focus:ring-assis-yellow">
+                            <label for="eventos" class="ml-3 font-medium text-black">Eventos 🎉</label>
+                        </div>
+                        <div class="flex items-center bg-gray-50 border border-assis-border p-3 rounded-lg">
+                            <input type="checkbox" id="limpeza" class="w-5 h-5 text-assis-yellow rounded border-gray-300 focus:ring-assis-yellow">
+                            <label for="limpeza" class="ml-3 font-medium text-black">Limpeza 🧹</label>
+                        </div>
+                        <div class="flex items-center bg-gray-50 border border-assis-border p-3 rounded-lg">
+                            <input type="checkbox" id="entregas" class="w-5 h-5 text-assis-yellow rounded border-gray-300 focus:ring-assis-yellow">
+                            <label for="entregas" class="ml-3 font-medium text-black">Entregas 🚚</label>
+                        </div>
+                        <div class="flex items-center bg-gray-50 border border-assis-border p-3 rounded-lg">
+                            <input type="checkbox" id="atendimento" class="w-5 h-5 text-assis-yellow rounded border-gray-300 focus:ring-assis-yellow">
+                            <label for="atendimento" class="ml-3 font-medium text-black">Atendimento 💬</label>
+                        </div>
+                        <div class="flex items-center bg-gray-50 border border-assis-border p-3 rounded-lg">
+                            <input type="checkbox" id="cuidados" class="w-5 h-5 text-assis-yellow rounded border-gray-300 focus:ring-assis-yellow">
+                            <label for="cuidados" class="ml-3 font-medium text-black">Cuidados Pessoais 💛</label>
+                        </div>
+                    </div>
+                    
+                    <div class="text-right pt-4">
+                        <button type="submit" class="btn-save bg-black text-white font-semibold py-2 px-6 rounded-lg transition-transform transform hover:-translate-y-0.5 hover:shadow-md">
+                            Salvar Áreas de Interesse
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="bg-white border border-assis-border rounded-xl shadow-suave p-6 md:p-8">
+                <h2 class="text-2xl font-semibold mb-6">Painel de Desempenho</h2>
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    
+                    <div class="flex-shrink-0 text-center">
+                        <div class="w-40 h-40 rounded-full grid place-items-center relative progress-circle" style="--progress: 70;">
+                            <div class="w-32 h-32 bg-white rounded-full"></div>
+                            <span class="absolute text-2xl font-bold">Nível 7</span>
+                        </div>
+                        <p class="text-sm text-assis-subtitle mt-3">Complete freelas e cursos para subir de nível!</p>
+                    </div>
+
+                    <div class="flex-grow w-full">
+                        <h3 class="text-lg font-semibold mb-3">Conquistas Recentes</h3>
+                        <div class="space-y-3">
+                            <div class="bg-white border border-assis-border rounded-lg p-4 font-medium shadow-suave flex items-center gap-3">
+                                🏆 10 Freelas Concluídos
+                            </div>
+                            <div class="bg-white border border-assis-border rounded-lg p-4 font-medium shadow-suave flex items-center gap-3">
+                                💬 5 Avaliações Positivas
+                            </div>
+                            <div class="bg-white border border-assis-border rounded-lg p-4 font-medium shadow-suave flex items-center gap-3">
+                                🎓 Novo Certificado
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            </main>
+    </div>
+
+    <footer class="bg-black text-white text-center p-8 mt-16">
+        <p class="m-0 mb-3">© 2025 AssisFreela | Conectando talentos e oportunidades.</p>
+        <nav class="flex justify-center gap-4 text-sm">
+            <a href="#" class="hover:text-assis-yellow">Termos de Uso</a>
+            <span>•</span>
+            <a href="#" class="hover:text-assis-yellow">Política de Privacidade</a>
+            <span>•</span>
+            <a href="#" class="hover:text-assis-yellow">Contato</a>
+        </nav>
+    </footer>
+
+    <div id="success-toast" class="fixed bottom-5 right-5 bg-green-500 text-white py-3 px-5 rounded-lg shadow-lg z-50 opacity-0 transform translate-y-10 transition-all duration-300 ease-out">
+        ✅ Alterações salvas com sucesso!
+    </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const token = localStorage.getItem("accessToken");
+        
+        // --- 1. VERIFICAÇÃO DE LOGIN ---
+        if (!token || localStorage.getItem("userRole") !== 'FREELANCER') {
+            localStorage.clear();
+            // CAMINHO CORRIGIDO AQUI
+            window.location.href = "/login.html"; 
+            return;
+        }
+
+        // --- 2. SELEÇÃO DE ELEMENTOS GLOBAIS ---
+        const formPersonalData = document.getElementById('personal-data-form');
+        const savePersonalDataButton = formPersonalData ? formPersonalData.querySelector('.btn-save') : null;
+        const toast = document.getElementById('success-toast'); 
+        
+        // Elementos do formulário Dados Pessoais
+        const nomeInput = document.getElementById('nome');
+        const nascimentoInput = document.getElementById('nascimento');
+        const emailInput = document.getElementById('email');
+        const telefoneInput = document.getElementById('telefone');
+        const enderecoInput = document.getElementById('endereco'); 
+        const documentoInput = document.getElementById('documento');
+
+        // Elementos de Habilidades
+        const addSkillBtn = document.getElementById('add-skill-btn');
+        const skillInput = document.getElementById('skill-input');
+        const skillsList = document.getElementById('skills-list');
+
+        // Elementos de Interesses
+        const interestsForm = document.getElementById('interests-form');
+        const saveInterestsButton = interestsForm ? interestsForm.querySelector('button[type="submit"]') : null; 
+
+        // --- 3. FUNÇÕES AUXILIARES ---
+
+        /**
+         * Adiciona uma tag de skill à lista na UI.
+         */
+        function addSkill(skillText) {
+            if (!skillsList) return;
+            const skillTrimmed = skillText.trim();
+            if (!skillTrimmed) return; 
+
+            const existingSkills = skillsList.querySelectorAll('.skill-tag span');
+            const alreadyExists = Array.from(existingSkills).some(span => span.textContent.trim().toLowerCase() === skillTrimmed.toLowerCase());
+            if (alreadyExists) {
+                 skillInput.value = ''; 
+                 return; 
+            }
+
+            const newSkillTag = document.createElement('li');
+            newSkillTag.className = 'skill-tag bg-assis-yellow text-black font-medium py-2 px-3 rounded-md flex items-center gap-2 animate-pulse'; 
+            newSkillTag.innerHTML = `<span>${skillTrimmed}</span><i class="fas fa-trash-alt cursor-pointer text-black hover:text-red-600 ml-1" title="Remover habilidade"></i>`;
+            
+            newSkillTag.querySelector('i').addEventListener('click', () => {
+                 newSkillTag.classList.add('opacity-0', 'transition-opacity', 'duration-300'); 
+                 setTimeout(() => newSkillTag.remove(), 300);
+            });
+            
+            skillsList.appendChild(newSkillTag);
+            setTimeout(() => newSkillTag.classList.remove('animate-pulse'), 500); 
+        }
+
+        /**
+         * Mostra um toast de sucesso.
+         */
+        function showSuccessToast(message = "✅ Alterações salvas com sucesso!") {
+            if (!toast) return;
+            toast.textContent = message; 
+            toast.classList.remove('opacity-0', 'translate-y-10');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-10');
+            }, 3000); 
+        }
+
+        // --- 4. FUNÇÃO PRINCIPAL DE CARREGAMENTO DE DADOS ---
+        async function carregarDadosAtuais() {
+            console.log("Iniciando carregamento dos dados do perfil...");
+            try {
+                const response = await fetch("http://127.0.0.1:8000/users/me/freelancer", {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                if (!response.ok) {
+                     if (response.status === 401) { 
+                        localStorage.clear(); 
+                        // CAMINHO CORRIGIDO AQUI
+                        window.location.href = "/login.html"; 
+                        return; // Interrompe execução
+                    }
+                    throw new Error(`Falha ao carregar dados: ${response.statusText}`);
+                }
+                
+                const freelancer = await response.json();
+                console.log("Dados recebidos:", freelancer);
+
+                // Preenche Dados Pessoais
+                if (nomeInput) nomeInput.value = freelancer.full_name || '';
+                if (nascimentoInput) nascimentoInput.value = freelancer.birth_date || ''; 
+                if (emailInput) emailInput.value = freelancer.email || '';
+                if (telefoneInput) telefoneInput.value = freelancer.phone || '';
+                if (enderecoInput) enderecoInput.value = freelancer.endereco || '';
+                if (documentoInput) documentoInput.value = freelancer.documento || '';
+                
+                // Carrega Skills
+                if (skillsList) {
+                    skillsList.innerHTML = ''; 
+                    if (freelancer.skills && Array.isArray(freelancer.skills)) {
+                        console.log("Carregando skills:", freelancer.skills);
+                        freelancer.skills.forEach(skill => addSkill(skill)); 
+                    } else { console.log("Nenhuma skill para carregar."); }
+                } else { console.error("#skills-list não encontrado."); }
+                
+                // Carrega Interesses
+                if (interestsForm) {
+                    interestsForm.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+                    if (freelancer.interests && Array.isArray(freelancer.interests)) {
+                         console.log("Carregando interesses:", freelancer.interests);
+                         freelancer.interests.forEach(id => {
+                            const cb = interestsForm.querySelector(`input#${id}`); 
+                            if (cb) cb.checked = true;
+                            else console.warn(`Checkbox #${id} não encontrado.`);
+                        });
+                    } else { console.log("Nenhuma interesse para carregar."); }
+                } else { console.error("#interests-form não encontrado."); }
+
+            } catch (error) {
+                console.error("Erro detalhado ao carregar perfil:", error);
+                alert(`Não foi possível carregar seus dados (${error.message}). Tente recarregar.`);
+            }
+        } // Fim de carregarDadosAtuais
+
+        // --- 5. ADIÇÃO DE EVENT LISTENERS ---
+
+        // Listener Salvar Dados Pessoais e Skills
+        if (formPersonalData && savePersonalDataButton) {
+            formPersonalData.addEventListener('submit', async (event) => {
+                event.preventDefault(); 
+                const btn = savePersonalDataButton; 
+                const originalText = btn.textContent;
+                btn.disabled = true; btn.textContent = "Salvando...";
+                
+                const skillsArray = skillsList ? Array.from(skillsList.querySelectorAll('.skill-tag span')).map(s => s.textContent.trim()) : [];
+                
+                const updateData = {
+                    full_name: nomeInput?.value, 
+                    birth_date: nascimentoInput?.value,
+                    phone: telefoneInput?.value, 
+                    skills: skillsArray,
+                    endereco: enderecoInput?.value, 
+                    documento: documentoInput?.value 
+                };
+                
+                Object.keys(updateData).forEach(key => updateData[key] === undefined && delete updateData[key]);
+
+                console.log("Enviando (Pessoal + Skills + Novos Campos):", updateData);
+                try {
+                    const response = await fetch("http://127.0.0.1:8000/users/me/freelancer", {
+                        method: "PUT", headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
+                        body: JSON.stringify(updateData)
+                    });
+                    const result = await response.json();
+                    if (!response.ok) throw new Error(result.detail || `Erro ${response.status}`);
+                    showSuccessToast("✅ Dados Pessoais e Habilidades salvos!"); 
+                } catch (error) {
+                    console.error("Erro ao salvar Dados/Skills:", error); alert(`Erro: ${error.message}`);
+                } finally { btn.disabled = false; btn.textContent = originalText; }
+            });
+        } else { console.error("Formulário/botão Dados Pessoais não encontrado."); }
+        
+        // Listener Adicionar Habilidade
+        if (addSkillBtn && skillInput && skillsList) {
+            addSkillBtn.addEventListener('click', () => { addSkill(skillInput.value); skillInput.value = ''; skillInput.focus(); });
+            skillInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); addSkillBtn.click(); }});
+        } else { console.error("Elementos de Habilidades não encontrados."); }
+
+        // Listener Salvar Interesses
+        if (interestsForm && saveInterestsButton) {
+            interestsForm.addEventListener('submit', async (event) => {
+                event.preventDefault(); 
+                const btn = saveInterestsButton;
+                const originalText = btn.textContent;
+                btn.disabled = true; btn.textContent = "Salvando...";
+                
+                const checkedInterests = [];
+                interestsForm.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => { if (cb.id) checkedInterests.push(cb.id); });
+                const updateData = { interests: checkedInterests }; 
+
+                console.log("Enviando (Interesses):", updateData);
+                try {
+                    const response = await fetch("http://127.0.0.1:8000/users/me/freelancer", {
+                        method: "PUT", headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
+                        body: JSON.stringify(updateData)
+                    });
+                    const result = await response.json(); 
+                    if (!response.ok) throw new Error(result.detail || `Erro ${response.status}`);
+                    showSuccessToast("✅ Áreas de Interesse salvas!"); 
+                } catch (error) {
+                    console.error("Erro ao salvar Interesses:", error); alert(`Erro: ${error.message}`);
+                } finally { btn.disabled = false; btn.textContent = originalText; }
+            });
+        } else { console.error("Formulário/botão Interesses não encontrado."); }
+
+        // --- 6. INICIA O CARREGAMENTO DOS DADOS ---
+        carregarDadosAtuais();
+
+    }); // Fim do DOMContentLoaded
+</script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link rel="stylesheet" as="style" onload="this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Work+Sans%3Awght%40400%3B500%3B700%3B900" />
+
+    <title>AssisFreela</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+
+<body>
+    <div class="relative flex h-auto min-h-screen w-full flex-col bg-[#fcfbf8] group/design-root overflow-x-hidden"
+        style="--checkbox-tick-svg: url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27rgb(28,26,13)%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3cpath d=%27M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z%27/%3e%3c/svg%3e'); --select-button-svg: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724px%27 height=%2724px%27 fill=%27rgb(158,144,71)%27 viewBox=%270 0 256 256%27%3e%3cpath d=%27M181.66,170.34a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-48-48a8,8,0,0,1,11.32-11.32L128,212.69l42.34-42.35A8,8,0,0,1,181.66,170.34Zm-96-84.68L128,43.31l42.34,42.35a8,8,0,0,0,11.32-11.32l-48-48a8,8,0,0,0-11.32,0l-48,48A8,8,0,0,0,85.66,85.66Z%27%3e%3c/path%3e%3c/svg%3e'); font-family: 'Work Sans','Noto Sans',sans-serif;">
+        <div class="layout-container flex h-full grow flex-col">
+            <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f4f2e6] px-10 py-3">
+                <div class="flex items-center gap-4 text-[#1c1a0d]">
+                    <div class="size-4">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-[#1c1a0d] text-lg font-bold leading-tight tracking-[-0.015em]">AssisFreela</h2>
+                </div>
+                <div class="flex flex-1 justify-end gap-8">
+                    <div class="flex items-center gap-9">
+                        <a class="text-[#1c1a0d] text-sm font-medium leading-normal" href="/frontend/register_Empresa.html">Para empresas</a>
+                        <a class="text-[#1c1a0d] text-sm font-medium leading-normal" href="/frontend/Pagina_Freelancer/">Para freelancers</a>
+                    </div>
+                    <button
+                        class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#f4f2e6] text-[#1c1a0d] text-sm font-bold leading-normal tracking-[0.015em]">
+                        <span class="truncate">Entrar</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Centralização total -->
+            <div class="flex flex-1 justify-center items-center py-10 px-4 sm:px-0">
+                <div
+                    class="layout-content-container flex flex-col w-[512px] max-w-full sm:max-w-[512px] py-10 px-6 sm:px-10 bg-white rounded-2xl shadow-lg border border-[#f4f2e6]">
+
+                    <h2
+                        class="text-[#1c1a0d] tracking-light text-[28px] font-bold leading-tight text-center pb-3 pt-2">
+                        Cadastre-se como Freelancer
+                    </h2>
+
+                    <p class="text-[#1c1a0d] text-base font-normal leading-normal pb-3 pt-1 text-center">
+                        Preencha os campos abaixo para criar sua conta e começar a encontrar oportunidades.
+                    </p>
+
+                    <!-- CAMPOS -->
+                    <div class="py-3">
+                        <label class="flex flex-col min-w-40 flex-1">
+                            <p class="text-[#1c1a0d] text-base font-medium leading-normal pb-2">Nome completo</p>
+                            <input id="freela-fullname" placeholder="Ex: Ana Silva"
+                                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#1c1a0d] focus:outline-0 focus:ring-0 border-none bg-[#f4f2e6] h-14 placeholder:text-[#9e9047] p-4 text-base font-normal leading-normal" />
+                        </label>
+                    </div>
+
+                    <div class="py-3">
+                        <label class="flex flex-col min-w-40 flex-1">
+                            <p class="text-[#1c1a0d] text-base font-medium leading-normal pb-2">Data de nascimento</p>
+                            <input id="freela-birthdate" placeholder="DD/MM/AAAA"
+                                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#1c1a0d] focus:outline-0 focus:ring-0 border-none bg-[#f4f2e6] h-14 placeholder:text-[#9e9047] p-4 text-base font-normal leading-normal" />
+                        </label>
+                    </div>
+
+                    <!-- <div class="py-3">
+                        <label class="flex flex-col min-w-40 flex-1">
+                            <p class="text-[#1c1a0d] text-base font-medium leading-normal pb-2">CPF ou RG</p>
+                            <input id="freela-document" placeholder="Ex: 123.456.789-00"
+                                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#1c1a0d] focus:outline-0 focus:ring-0 border-none bg-[#f4f2e6] h-14 placeholder:text-[#9e9047] p-4 text-base font-normal leading-normal" />
+                        </label>
+                    </div> -->
+
+                    <div class="py-3">
+                        <label class="flex flex-col min-w-40 flex-1">
+                            <p class="text-[#1c1a0d] text-base font-medium leading-normal pb-2">E-mail pessoal</p>
+                            <input id="freela-email" type="email" placeholder="Ex: ana.silva@email.com"
+                                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#1c1a0d] focus:outline-0 focus:ring-0 border-none bg-[#f4f2e6] h-14 placeholder:text-[#9e9047] p-4 text-base font-normal leading-normal" />
+                        </label>
+                    </div>
+
+                    <div class="py-3">
+                        <label class="flex flex-col min-w-40 flex-1">
+                            <p class="text-[#1c1a0d] text-base font-medium leading-normal pb-2">Telefone com WhatsApp</p>
+                            <input id="freela-phone" placeholder="(XX) XXXXX-XXXX"
+                                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#1c1a0d] focus:outline-0 focus:ring-0 border-none bg-[#f4f2e6] h-14 placeholder:text-[#9e9047] p-4 text-base font-normal leading-normal" />
+                        </label>
+                    </div>
+
+                    <!-- <div class="flex gap-4 py-3">
+                        <label class="flex flex-col flex-1">
+                            <p class="text-[#1c1a0d] text-base font-medium leading-normal pb-2">Cidade</p>
+                            <input id="freela-city" placeholder="Ex: São Paulo"
+                                class="form-input w-full rounded-lg text-[#1c1a0d] bg-[#f4f2e6] h-14 placeholder:text-[#9e9047] p-4" />
+                        </label>
+                        <label class="flex flex-col w-1/4">
+                            <p class="text-[#1c1a0d] text-base font-medium leading-normal pb-2">Estado</p>
+                            <input id="freela-state" placeholder="Ex: SP"
+                                class="form-input w-full rounded-lg text-[#1c1a0d] bg-[#f4f2e6] h-14 placeholder:text-[#9e9047] p-4" />
+                        </label>
+                    </div>
+
+                    <h3 class="text-[#1c1a0d] text-lg font-bold leading-tight pb-2 pt-4">Áreas de interesse</h3>
+                    <div class="py-3">
+                        <select id="freela-interest-area"
+                            class="form-input w-full rounded-lg text-[#1c1a0d] bg-[#f4f2e6] h-14 p-4 text-base">
+                            <option value="">Selecione</option>
+                            <option value="Design Gráfico">Design Gráfico</option>
+                            <option value="Desenvolvimento Web">Desenvolvimento Web</option>
+                            <option value="Marketing Digital">Marketing Digital</option>
+                            <option value="Redação">Redação</option>
+                            <option value="Tradução">Tradução</option>
+                            <option value="Auxiliar">Auxiliar</option>
+                        </select>
+                    </div>
+
+                    <div class="py-3">
+                        <label class="flex flex-col">
+                            <p class="text-[#1c1a0d] text-base font-medium leading-normal pb-2">Breve apresentação pessoal</p>
+                            <textarea id="freela-bio" placeholder="Fale um pouco sobre sua experiência e habilidades"
+                                class="form-input w-full rounded-lg text-[#1c1a0d] bg-[#f4f2e6] min-h-36 p-4 text-base placeholder:text-[#9e9047]"></textarea>
+                        </label>
+                    </div>
+
+                    <div class="py-3">
+                        <label class="flex flex-col">
+                            <p class="text-[#1c1a0d] text-base font-medium leading-normal pb-2">Link do seu portfólio (opcional)</p>
+                            <input id="freela-portfolio" placeholder="Ex: seuportfolio.com"
+                                class="form-input w-full rounded-lg text-[#1c1a0d] bg-[#f4f2e6] h-14 p-4 text-base placeholder:text-[#9e9047]" />
+                        </label>
+                    </div> -->
+
+                    <div class="py-3">
+                        <label class="flex flex-col">
+                            <p class="text-[#1c1a0d] text-base font-medium leading-normal pb-2">Senha</p>
+                            <input id="freela-password" type="password" placeholder="Crie uma senha segura"
+                                class="form-input w-full rounded-lg text-[#1c1a0d] bg-[#f4f2e6] h-14 p-4 placeholder:text-[#9e9047]" />
+                        </label>
+                    </div>
+
+                    <div class="py-3">
+                        <label class="flex flex-col">
+                            <p class="text-[#1c1a0d] text-base font-medium leading-normal pb-2">Confirme sua senha</p>
+                            <input id="freela-password-confirm" type="password" placeholder="Repita a senha"
+                                class="form-input w-full rounded-lg text-[#1c1a0d] bg-[#f4f2e6] h-14 p-4 placeholder:text-[#9e9047]" />
+                        </label>
+                    </div>
+
+                    <div class="py-3">
+                        <label class="flex items-start gap-3">
+                            <input type="checkbox"
+                                class="h-5 w-5 rounded border-[#e9e4ce] border-2 bg-transparent text-[#f9d106]" />
+                            <p class="text-[#1c1a0d] text-base font-normal">Desejo receber notificações sobre novas oportunidades e atualizações.</p>
+                        </label>
+                        <label class="flex items-start gap-3 py-3">
+                            <input id="freela-terms" type="checkbox"
+                                class="h-5 w-5 rounded border-[#e9e4ce] border-2 bg-transparent text-[#f9d106]" />
+                            <p class="text-[#1c1a0d] text-base font-normal leading-normal">
+                                Concordo com os <strong>Termos de Uso</strong> e <strong>Política de Privacidade</strong>.
+                            </p>
+                        </label>
+                    </div>
+
+                    <p id="register-error" class="text-red-600 text-sm pb-3 text-center"></p>
+
+                    <div class="flex pt-3 pb-5">
+                        <button id="register-button" type="button"
+                            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 flex-1 bg-[#f9d106] text-[#1c1a0d] text-base font-bold leading-normal tracking-[0.015em]">
+                            <span class="truncate">Cadastrar Freelancer</span>
+                        </button>
+                    </div>
+
+                    <p class="text-[#9e8d47] text-sm font-normal text-center">
+                        <a href="Login.html" class="underline">Já tenho conta</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.getElementById('register-button');
+            const errorElement = document.getElementById('register-error');
+            const fullnameInput = document.getElementById('freela-fullname');
+            const birthdateInput = document.getElementById('freela-birthdate');
+            // const documentInput = document.getElementById('freela-document'); // <-- REMOVER
+            const emailInput = document.getElementById('freela-email');
+            const phoneInput = document.getElementById('freela-phone');
+            // const cityInput = document.getElementById('freela-city');         // <-- REMOVER
+            // const stateInput = document.getElementById('freela-state');        // <-- REMOVER
+            // const interestAreaInput = document.getElementById('freela-interest-area'); // <-- REMOVER
+            // const bioInput = document.getElementById('freela-bio');         // <-- REMOVER
+            // const portfolioInput = document.getElementById('freela-portfolio'); // <-- REMOVER (A menos que você tenha descomentado o campo no HTML)
+            const passwordInput = document.getElementById('freela-password');
+            const passwordConfirmInput = document.getElementById('freela-password-confirm');
+            const termsInput = document.getElementById('freela-terms');
+
+            button.addEventListener('click', async () => {
+                errorElement.textContent = '';
+                const password = passwordInput.value;
+                const passwordConfirm = passwordConfirmInput.value;
+
+                // --- Validações ---
+                if (!fullnameInput || !birthdateInput || !emailInput || !phoneInput || !passwordInput || !passwordConfirmInput || !termsInput) {
+                    errorElement.textContent = 'Erro interno: Um ou mais campos não foram encontrados no HTML.';
+                    console.error('Um ou mais elementos de input não foram encontrados:', { fullnameInput, birthdateInput, emailInput, phoneInput, passwordInput, passwordConfirmInput, termsInput });
+                    return;
+                }
+                 if (password !== passwordConfirm) {
+                    errorElement.textContent = 'As senhas não conferem.';
+                    return;
+                }
+                if (!termsInput.checked) {
+                    errorElement.textContent = 'Você precisa aceitar os termos e condições.';
+                    return;
+                }
+                // --- Fim Validações ---
+
+
+                // --- Montar os dados para enviar ---
+                // Certifique-se que estes campos correspondem EXATAMENTE
+                // ao modelo FreelancerCreate em models.py
+                const dataToSend = {
+                    full_name: fullnameInput.value,
+                    birth_date: birthdateInput.value,
+                    // document: documentInput.value, // <-- REMOVER
+                    email: emailInput.value,
+                    phone: phoneInput.value,
+                    // city: cityInput.value,         // <-- REMOVER
+                    // state: stateInput.value,        // <-- REMOVER
+                    // interest_area: interestAreaInput.value, // <-- REMOVER
+                    // bio: bioInput.value,         // <-- REMOVER
+                    // portfolio: portfolioInput ? portfolioInput.value || null : null, // <-- REMOVER (Ou ajuste se o campo existir)
+                    password: password
+                };
+                // --- Fim Montar Dados ---
+
+
+                // --- Enviar para API ---
+                try {
+                    console.log("Enviando dados:", dataToSend); // Adicionei um log para debug
+                    const response = await fetch('http://127.0.0.1:8000/register/freelancer', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(dataToSend)
+                    });
+
+                    const data = await response.json();
+
+                    // Verifica se a resposta foi OK (status 2xx)
+                    if (!response.ok) {
+                        // Tenta pegar a mensagem de erro do backend (do campo 'detail')
+                        // Se não houver 'detail', usa uma mensagem genérica
+                        const errorMsg = data.detail || `Erro ${response.status}: ${response.statusText}`;
+                        throw new Error(errorMsg);
+                    }
+
+                    // Sucesso!
+                    alert(`Freelancer "${data.full_name}" cadastrado com sucesso!`);
+                    window.location.href = 'Login.html'; // Redireciona para o Login
+
+                } catch (error) {
+                    console.error('Erro no cadastro:', error);
+                    // Mostra a mensagem de erro vinda do backend ou a genérica
+                    errorElement.textContent = `Erro: ${error.message}`;
+                }
+                // --- Fim Enviar para API ---
+            });
+        });
+    </script>
+</body>
+</html>
