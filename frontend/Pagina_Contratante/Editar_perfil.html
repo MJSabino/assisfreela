@@ -138,7 +138,7 @@
             }
 
             try {
-                const response = await fetch("http:///users/me", {
+                const response = await fetch("/users/me", {
                     headers: { "Authorization": "Bearer " + token }
                 });
 
@@ -194,7 +194,7 @@
             });
 
             try {
-                const response = await fetch("http:///users/me", {
+                const response = await fetch("/users/me", {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",

@@ -245,7 +245,7 @@
                 // --- Enviar para API ---
                 try {
                     console.log("Enviando dados:", dataToSend); // Adicionei um log para debug
-                    const response = await fetch('http:///register/freelancer', {
+                    const response = await fetch('/register/freelancer', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(dataToSend)
