@@ -4,7 +4,14 @@ from pydantic_core import core_schema
 from enum import Enum
 from datetime import datetime
 from bson import ObjectId
-from typing import Any, Annotated, List
+from typing import Any, List
+
+try:
+    # Tenta importar do Python 3.9+
+    from typing import Annotated
+except ImportError:
+    # Se falhar (Python 3.8), importa do pacote de extensão
+    from typing_extensions import Annotated
 
 # --- DEFINIÇÃO CORRIGIDA DE PyObjectId ---
 class PyObjectId(ObjectId):

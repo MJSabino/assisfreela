@@ -5,7 +5,14 @@ import aiofiles
 import uuid
 from pathlib import Path
 from datetime import timedelta, datetime, timezone
-from typing import Annotated, List
+from typing import List
+
+try:
+    # Tenta importar do Python 3.9+
+    from typing import Annotated
+except ImportError:
+    # Se falhar (Python 3.8), importa do pacote de extensão
+    from typing_extensions import Annotated
 
 # --- Importações de Terceiros (FastAPI, Pydantic, etc.) ---
 from fastapi import (
