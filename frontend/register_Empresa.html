@@ -134,7 +134,7 @@
 
                 try {
                     // --- PASSO 1: TENTAR O CADASTRO ---
-                    const registerResponse = await fetch('http://127.0.0.1:8000/register/contratante', {
+                    const registerResponse = await fetch('/register/contratante', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(dataToSend)
@@ -149,7 +149,7 @@
                     // --- PASSO 2: CADASTRO OK! FAZER AUTO-LOGIN ---
                     console.log('Cadastro bem-sucedido. Tentando login automático...');
 
-                    const loginResponse = await fetch('http://127.0.0.1:8000/login', {
+                    const loginResponse = await fetch('/login', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         // Usamos o email e senha que o usuário acabou de digitar

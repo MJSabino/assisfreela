@@ -102,7 +102,7 @@
 
         // --- NOVA CHAMADA PARA BUSCAR DETALHES DA VAGA ---
         try {
-            const vagaResponse = await fetch(`http://127.0.0.1:8000/vagas/${vagaId}`, {
+            const vagaResponse = await fetch(`/vagas/${vagaId}`, {
                  headers: { 'Authorization': `Bearer ${token}` }
             });
             if (!vagaResponse.ok) {
@@ -119,7 +119,7 @@
 
         // Continua buscando os candidatos...
         try {
-            const response = await fetch(`http://127.0.0.1:8000/vagas/${vagaId}/candidates`, {
+            const response = await fetch(`/vagas/${vagaId}/candidates`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -192,7 +192,7 @@
         allActionButtons.forEach(btn => btn.disabled = true); // Desabilita explicitamente
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/vagas/${vagaId}/candidates/${freelancerEmail}/${action}`, {
+            const response = await fetch(`/vagas/${vagaId}/candidates/${freelancerEmail}/${action}`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${token}` }
             });

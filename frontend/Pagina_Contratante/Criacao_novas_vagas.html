@@ -212,7 +212,7 @@
 
             // 4. Envio para a API (Fetch)
             try {
-                const response = await fetch("http://127.0.0.1:8000/vagas", {
+                const response = await fetch("/vagas", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
