@@ -114,7 +114,7 @@
     // --- 1. Buscar Vagas Abertas ---
     async function fetchVagas() {
         try {
-            const response = await fetch("http://127.0.0.1:8000/vagas"); // Rota pública
+            const response = await fetch("http:///vagas"); // Rota pública
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -213,7 +213,7 @@
         }
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/vagas/${vagaId}/apply`, {
+            const response = await fetch(`http:///vagas/${vagaId}/apply`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`

@@ -125,7 +125,7 @@
             }
 
             try {
-                const response = await fetch(`http://127.0.0.1:8000/freelancers/${freelancerEmail}/profile`, {
+                const response = await fetch(`http:///freelancers/${freelancerEmail}/profile`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 

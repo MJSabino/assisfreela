@@ -98,7 +98,7 @@
         // --- 2. Buscar Detalhes da Vaga Específica ---
         async function fetchDetalhesVaga(id) {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/vagas/${id}`);
+                const response = await fetch(`http:///vagas/${id}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -202,7 +202,7 @@
             }
 
             try {
-                const response = await fetch(`http://127.0.0.1:8000/vagas/${vagaId}/apply`, {
+                const response = await fetch(`http:///vagas/${vagaId}/apply`, {
                     method: 'POST',
                     headers: { 'Authorization': `Bearer ${token}` }
                 });

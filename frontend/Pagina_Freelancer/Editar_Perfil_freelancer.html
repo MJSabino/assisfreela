@@ -293,7 +293,7 @@
         async function carregarDadosAtuais() {
             console.log("Iniciando carregamento dos dados do perfil...");
             try {
-                const response = await fetch("http://127.0.0.1:8000/users/me/freelancer", {
+                const response = await fetch("http:///users/me/freelancer", {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 if (!response.ok) {
@@ -370,7 +370,7 @@
 
                 console.log("Enviando (Pessoal + Skills + Novos Campos):", updateData);
                 try {
-                    const response = await fetch("http://127.0.0.1:8000/users/me/freelancer", {
+                    const response = await fetch("http:///users/me/freelancer", {
                         method: "PUT", headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
                         body: JSON.stringify(updateData)
                     });
@@ -403,7 +403,7 @@
 
                 console.log("Enviando (Interesses):", updateData);
                 try {
-                    const response = await fetch("http://127.0.0.1:8000/users/me/freelancer", {
+                    const response = await fetch("http:///users/me/freelancer", {
                         method: "PUT", headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
                         body: JSON.stringify(updateData)
                     });

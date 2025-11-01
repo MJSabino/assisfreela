@@ -363,7 +363,7 @@
                 }
 
                 try {
-                    const response = await fetch("http://127.0.0.1:8000/users/me/freelancer", {
+                    const response = await fetch("http:///users/me/freelancer", {
                         headers: { "Authorization": `Bearer ${token}` }
                     });
 
@@ -383,7 +383,7 @@
                         if (freelancer.avatar_url.startsWith('http')) {
                             avatarImg.src = freelancer.avatar_url;
                         } else if (freelancer.avatar_url.startsWith('/static')) {
-                            avatarImg.src = `http://127.0.0.1:8000${freelancer.avatar_url}`;
+                            avatarImg.src = `http://${freelancer.avatar_url}`;
                         } else {
                             avatarImg.src = ""; 
                         }
@@ -419,7 +419,7 @@
                 tbody.innerHTML = '<tr><td colspan="4" class="py-3 px-4 text-center text-gray-500">Carregando aplicações...</td></tr>';
 
                 try {
-                    const response = await fetch("http://127.0.0.1:8000/vagas/me/applied", {
+                    const response = await fetch("http:///vagas/me/applied", {
                         headers: { "Authorization": `Bearer ${token}` }
                     });
                     if (!response.ok) { throw new Error(`Falha ao buscar aplicações: ${response.statusText}`); }
@@ -469,7 +469,7 @@
                             targetButton.innerHTML = '<span class="material-symbols-outlined text-sm mr-1 animate-spin">progress_activity</span> Cancelando...';
 
                             try {
-                                const cancelResponse = await fetch(`http://127.0.0.1:8000/vagas/${vagaId}/cancel_apply`, {
+                                const cancelResponse = await fetch(`http:///vagas/${vagaId}/cancel_apply`, {
                                     method: 'DELETE',
                                     headers: { "Authorization": `Bearer ${token}` }
                                 });
@@ -509,7 +509,7 @@
                 tbody.innerHTML = '<tr><td colspan="4" class="py-3 px-4 text-center text-gray-500">Carregando missões...</td></tr>';
 
                 try {
-                    const response = await fetch("http://127.0.0.1:8000/vagas/me/active_freelancer", {
+                    const response = await fetch("http:///vagas/me/active_freelancer", {
                         headers: { "Authorization": `Bearer ${token}` }
                     });
                     if (!response.ok) { throw new Error(`Falha ao buscar missões ativas: ${response.statusText}`); }
@@ -586,7 +586,7 @@
                     formData.append("file", file);
 
                     try {
-                        const response = await fetch("http://127.0.0.1:8000/users/me/avatar", {
+                        const response = await fetch("http:///users/me/avatar", {
                             method: "POST",
                             headers: { "Authorization": `Bearer ${token}` },
                             body: formData
@@ -601,7 +601,7 @@
                              if (updatedProfile.avatar_url.startsWith('http')) {
                                 avatarImgDisplay.src = updatedProfile.avatar_url;
                             } else if (updatedProfile.avatar_url.startsWith('/static')) {
-                                avatarImgDisplay.src = `http://127.0.0.1:8000${updatedProfile.avatar_url}?t=${new Date().getTime()}`;
+                                avatarImgDisplay.src = `http://${updatedProfile.avatar_url}?t=${new Date().getTime()}`;
                             }
                         }
 

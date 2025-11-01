@@ -171,7 +171,7 @@
         // --- Carregar Dados da Empresa ---
         async function carregarInfoEmpresa(token) {
             try {
-                const response = await fetch("http://127.0.0.1:8000/users/me", { headers: { "Authorization": "Bearer " + token }});
+                const response = await fetch("http:///users/me", { headers: { "Authorization": "Bearer " + token }});
                 if (!response.ok) {
                     if (response.status === 401 || response.status === 403) { localStorage.removeItem("accessToken"); window.location.href = "../login.html"; }
                     throw new Error(`Falha ao buscar dados: ${response.statusText}`);
@@ -193,7 +193,7 @@
              loadingMessage.textContent = "Carregando vagas recentes...";
 
              try {
-                const response = await fetch("http://127.0.0.1:8000/vagas/me", { headers: { "Authorization": "Bearer " + token } });
+                const response = await fetch("http:///vagas/me", { headers: { "Authorization": "Bearer " + token } });
                 if (!response.ok) { /* ... erro handling ... */ throw new Error('Falha ao buscar vagas'); }
                 const vagas = await response.json();
                 // --- DEBUG ---
@@ -222,7 +222,7 @@
              loadingMessage.textContent = "Carregando vagas ativas...";
 
             try {
-                const response = await fetch("http://127.0.0.1:8000/vagas/me/active", { headers: { "Authorization": "Bearer " + token } });
+                const response = await fetch("http:///vagas/me/active", { headers: { "Authorization": "Bearer " + token } });
                 if (!response.ok) { /* ... erro handling ... */ throw new Error(`Falha ao buscar ativas: ${response.statusText}`);}
                 const vagasAtivas = await response.json();
                 // --- DEBUG ---
