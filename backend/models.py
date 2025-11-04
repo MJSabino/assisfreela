@@ -4,7 +4,14 @@ from pydantic_core import core_schema
 from enum import Enum
 from datetime import datetime
 from bson import ObjectId
-from typing import Any, Annotated, List
+from typing import Any, List
+
+try:
+    # Tenta importar do Python 3.9+
+    from typing import Annotated
+except ImportError:
+    # Se falhar (Python 3.8), importa do pacote de extensão
+    from typing_extensions import Annotated
 
 # --- DEFINIÇÃO CORRIGIDA DE PyObjectId ---
 class PyObjectId(ObjectId):
@@ -174,12 +181,12 @@ class VagaStatus(str, Enum):
 class VagaBase(BaseModel): 
     titulo: str
     descricao: str
-    categoria: str
+    categoria: str | None = None
     habilidades: str | None = None # Input as comma-separated string
     nivel: str
     orcamento: float
     prazo: int | None = None
-    tipo_pagamento: str
+    tipo_pagamento: str | None = None
 
 class VagaCreate(VagaBase): pass
 
@@ -204,8 +211,19 @@ class VagaInDB(VagaBase):
         "json_encoders": {ObjectId: str}
     }
 
+# Em backend/models.py
+
 class VagaResponse(VagaBase):
-    id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
+    # Campo interno para ler o ObjectId do DB, não exposto no JSON final
+    internal_id: PyObjectId = Field(..., alias="_id", exclude=True)
+    
+    # Campo 'id' calculado como string "limpa" para o frontend
+    @computed_field
+    @property
+    def id(self) -> str:
+        return str(self.internal_id)
+        
+    # Campos adicionais que a resposta tem
     owner_email: EmailStr
     habilidades: List[str] = [] # Output as a list
     status: VagaStatus
@@ -224,3 +242,10 @@ class VagaResponse(VagaBase):
 class VagaStatsResponse(BaseModel): 
     vagas_abertas: int
     vagas_concluidas: int
+
+# ADICIONE NO FIM DO ARQUIVO:
+
+class SupportRequest(BaseModel):
+    nome: str
+    email: EmailStr
+    mensagem: str

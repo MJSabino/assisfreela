@@ -15,7 +15,7 @@ from fastapi import (
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.concurrency import run_in_threadpool
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, ValidationError
 from bson.objectid import ObjectId, InvalidId
 
 # --- Importações Locais (Nossos Módulos) ---
@@ -37,7 +37,8 @@ from models import (
     FreelancerCandidateResponse,
     FreelancerDetailResponse,
     FreelancerUpdate,
-    CertificateItem
+    CertificateItem,
+    SupportRequest
 )
 
 
@@ -61,16 +62,117 @@ app.add_middleware(
 # ==========================================================
 # --- FUNÇÃO HELPER DE LIMPEZA (ESSENCIAL) ---
 # ==========================================================
+# Em api.py
+# (Garanta que 'from models import VagaStatus' está no topo do arquivo)
+# (Garanta que 'from datetime import datetime, timezone' está no topo)
+
+# ==========================================================
+# --- FUNÇÃO HELPER DE LIMPEZA (VERSÃO COMPLETA) ---
+# ==========================================================
 def clean_vaga_data(vaga_doc: dict) -> dict:
     """
-    Corrige o campo 'habilidades' de string (formato antigo) para lista.
-    Isso evita o erro 400 Bad Request na validação do response_model.
+    Limpa e corrige dados antigos do MongoDB ANTES da validação do Pydantic.
+    Isso evita o erro 400 Bad Request, agora tratando NULOS.
     """
+    
+    # 1. Corrige 'habilidades'
     if "habilidades" in vaga_doc and isinstance(vaga_doc["habilidades"], str):
         vaga_doc["habilidades"] = [h.strip() for h in vaga_doc["habilidades"].split(",") if h.strip()]
     elif "habilidades" not in vaga_doc or not isinstance(vaga_doc["habilidades"], list):
         vaga_doc["habilidades"] = []
+
+    # 2. Corrige 'categoria' (adiciona padrão se estiver faltando ou nulo)
+    if not vaga_doc.get("categoria"):
+        vaga_doc["categoria"] = "Não categorizado"
+
+    # 3. Corrige 'owner_email' (renomeia "e-mail de" ou adiciona padrão)
+    if "e-mail de" in vaga_doc and "owner_email" not in vaga_doc:
+        vaga_doc["owner_email"] = vaga_doc.pop("e-mail de") 
+    if not vaga_doc.get("owner_email"):
+        vaga_doc["owner_email"] = "email.padrao@erro.com" 
+
+    # 4. Corrige 'tipo_pagamento' (adiciona padrão se estiver faltando ou nulo)
+    if not vaga_doc.get("tipo_pagamento"):
+        vaga_doc["tipo_pagamento"] = "Não informado"
+
+    # 5. Corrige 'status' (adiciona padrão se estiver faltando ou nulo)
+    if not vaga_doc.get("status"):
+        vaga_doc["status"] = VagaStatus.aberta.value # Usa o Enum VagaStatus
+
+    # 6. Corrige 'created_at' (renomeia 'criado_em' ou adiciona padrão se nulo)
+    if "criado_em" in vaga_doc and "created_at" not in vaga_doc:
+        vaga_doc["created_at"] = vaga_doc.pop("criado_em")
+    if not vaga_doc.get("created_at"): # Checa se é 'None' ou 'missing'
+        vaga_doc["created_at"] = datetime.now(timezone.utc) # Padrão se tudo falhar
+
+    # 7. Garante tipos numéricos
+    try:
+        if not vaga_doc.get("orcamento"):
+            vaga_doc["orcamento"] = 0.0
+        else:
+            vaga_doc["orcamento"] = float(vaga_doc["orcamento"])
+            
+        if "prazo" in vaga_doc and vaga_doc["prazo"] is not None:
+             vaga_doc["prazo"] = int(vaga_doc["prazo"])
+        else:
+             vaga_doc["prazo"] = None # Garante que seja None se não existir
+             
+    except (ValueError, TypeError):
+         # Se a conversão falhar, define padrões seguros
+         vaga_doc["orcamento"] = 0.0
+         vaga_doc["prazo"] = None
+        
     return vaga_doc
+# ==========================================================
+
+
+# ... (outras rotas) ...
+
+
+# ==========================================================
+# --- ROTA DE DEBUG (A ROTA DO ERRO) ---
+# ==========================================================
+@app.get("/vagas/me", response_model=List[VagaResponse])
+async def read_own_vagas(
+    payload: Annotated[TokenPayload, Depends(get_current_contratante)]
+):
+    """Retorna as vagas criadas pelo Contratante logado."""
+    owner_email = payload.sub
+    
+    vagas_list_db = await run_in_threadpool(lambda: list(collection_vagas.find({"owner_email": owner_email}).sort("created_at", -1)))
+    
+    clean_list = []
+    try:
+        # 1. Limpa CADA vaga na lista
+        clean_list = [clean_vaga_data(vaga) for vaga in vagas_list_db]
+        
+        # 2. Tenta validar
+        valid_list = [VagaResponse.model_validate(vaga) for vaga in clean_list]
+        return valid_list
+        
+    except ValidationError as e:
+        # --- SE FALHAR, ISSO VAI NOS DIZER O PORQUÊ ---
+        print("="*50)
+        print(f"!!! ERRO DE VALIDAÇÃO Pydantic em /vagas/me para o usuário {owner_email}")
+        print("="*50)
+        print("DADOS (APÓS LIMPEZA) QUE CAUSARAM A FALHA:")
+        # Tenta imprimir o documento problemático
+        for i, vaga in enumerate(clean_list):
+            try:
+                VagaResponse.model_validate(vaga)
+            except ValidationError:
+                print(f"Documento problemático [{i}]: {vaga}")
+                break
+                
+        print("\nERRO DETALHADO DO PYDANTIC:")
+        print(e.json()) # Mostra exatamente qual campo falhou
+        print("="*50)
+        # Retorna 500 pois o clean_vaga_data falhou em limpar
+        raise HTTPException(status_code=500, detail=f"Erro de validação interna: {e.json()}")
+    except Exception as e:
+        # Pega qualquer outro erro
+        print(f"Erro inesperado em /vagas/me: {e}")
+        raise HTTPException(status_code=500, detail=f"Erro geral ao processar vagas: {e}")
 # ==========================================================
 
 # --- ROTAS DA API ---
@@ -197,6 +299,9 @@ async def create_vaga(
 # ==========================================================
 # --- INÍCIO DA CORREÇÃO FINAL (A ROTA DO ERRO) ---
 # ==========================================================
+# Em api.py
+# Substitua a sua @app.get("/vagas/me" ... ) inteira por isto:
+
 @app.get("/vagas/me", response_model=List[VagaResponse])
 async def read_own_vagas(
     payload: Annotated[TokenPayload, Depends(get_current_contratante)]
@@ -204,30 +309,40 @@ async def read_own_vagas(
     """Retorna as vagas criadas pelo Contratante logado."""
     owner_email = payload.sub
     
-    print(">>> Rota /vagas/me foi chamada (VERSÃO FINAL)") # Print de Debug
-    
     vagas_list_db = await run_in_threadpool(lambda: list(collection_vagas.find({"owner_email": owner_email}).sort("created_at", -1)))
     
+    clean_list = []
     try:
-        # Limpa CADA vaga na lista ANTES de retornar
-        # Isso corrige o erro de dados antigos (habilidades como string)
+        # 1. Limpa CADA vaga na lista
         clean_list = [clean_vaga_data(vaga) for vaga in vagas_list_db]
         
-        # Valida manualmente (para dar um erro 500 se falhar, em vez de 400)
-        # A simplificação do VagaResponse no models.py deve fazer isso passar.
+        # 2. Tenta validar
         valid_list = [VagaResponse.model_validate(vaga) for vaga in clean_list]
-        
         return valid_list
         
+    except ValidationError as e:
+        # --- SE FALHAR, ISSO VAI NOS DIZER O PORQUÊ ---
+        print("="*50)
+        print(f"!!! ERRO DE VALIDAÇÃO Pydantic em /vagas/me para o usuário {owner_email}")
+        print("="*50)
+        print("DADOS (APÓS LIMPEZA) QUE CAUSARAM A FALHA:")
+        # Tenta imprimir o documento problemático
+        for i, vaga in enumerate(clean_list):
+            try:
+                VagaResponse.model_validate(vaga)
+            except ValidationError:
+                print(f"Documento problemático [{i}]: {vaga}")
+                break
+                
+        print("\nERRO DETALHADO DO PYDANTIC:")
+        print(e.json()) # Mostra exatamente qual campo falhou
+        print("="*50)
+        # Retorna 500 pois o clean_vaga_data falhou em limpar
+        raise HTTPException(status_code=500, detail=f"Erro de validação interna: {e.json()}")
     except Exception as e:
-        print(f"--- ERRO CRÍTICO AO PROCESSAR VAGAS EM /vagas/me ---")
-        print(f"Erro: {e}")
-        print(f"--------------------------------------------------")
-        # Se mesmo após a limpeza falhar, é um erro interno do servidor
-        raise HTTPException(status_code=500, detail=f"Erro ao processar dados da vaga: {e}")
-# ==========================================================
-# --- FIM DA CORREÇÃO FINAL ---
-# ==========================================================
+        # Pega qualquer outro erro
+        print(f"Erro inesperado em /vagas/me: {e}")
+        raise HTTPException(status_code=500, detail=f"Erro geral ao processar vagas: {e}")
 
 
 @app.get("/vagas/me/active", response_model=List[VagaResponse])
@@ -489,6 +604,26 @@ async def update_freelancer_me(
          raise HTTPException(status_code=500, detail=f"Erro interno ao salvar dados: {e}")
     if result.matched_count == 0: raise HTTPException(status_code=404, detail="Usuário freelancer não encontrado para atualizar.")
     return await read_freelancer_me(payload)
+
+# SUPORTE:
+
+@app.post("/suporte", status_code=status.HTTP_200_OK)
+async def handle_support_request(support_data: SupportRequest):
+    """
+    Recebe uma nova mensagem de suporte do formulário de contato.
+    """
+    
+    # Por enquanto, vamos apenas imprimir no terminal
+    print("="*30)
+    print(">>> NOVA MENSAGEM DE SUPORTE RECEBIDA <<<")
+    print(f"Nome:    {support_data.nome}")
+    print(f"Email:   {support_data.email}")
+    print(f"Mensagem: {support_data.mensagem}")
+    print("="*30)
+    
+    # (No futuro, você pode adicionar um código aqui para enviar um email)
+    
+    return {"message": "Mensagem recebida com sucesso"}
 
 @app.post("/users/me/avatar", response_model=FreelancerDetailResponse)
 async def upload_freelancer_avatar(
