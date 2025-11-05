@@ -1,57 +1,97 @@
-<html><head>
-<meta charset="utf-8"/>
-<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<title>Stitch Design</title>
-<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<style type="text/tailwindcss">
-      :root {
-        --primary-yellow: #f9b406;
-        --text-dark: #181611;
-        --bg-light: #f5f3f0;
-      }
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>AssisFreela - Escolha de Perfil</title>
+    <link rel="icon" href="../img/icone_raio.png" type="image/png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FFB300", // Amarelo AssisFreela
+                        "text-light": "#000000",
+                        "text-dark": "#FFFFFF",
+                        "background-dark": "#121212",
+                    },
+                    fontFamily: {
+                        display: ["Montserrat", "sans-serif"],
+                        body: ["Poppins", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .font-display { font-family: 'Montserrat', sans-serif; font-weight: 800; }
+        .font-body { font-family: 'Poppins', sans-serif; }
     </style>
 </head>
-<body>
-<div class="relative flex h-auto min-h-screen w-full flex-col bg-white group/design-root overflow-x-hidden" style='font-family: Manrope, "Noto Sans", sans-serif;'>
-<div class="layout-container flex h-full grow flex-col">
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[var(--bg-light)] px-10 py-3">
-<div class="flex items-center gap-4 text-[var(--text-dark)]">
-<div class="size-4">
-<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
-</svg>
-</div>
-<h2 class="text-[var(--text-dark)] text-lg font-bold leading-tight tracking-[-0.015em]">AssisFreela</h2>
-</div>
-</header>
-<div class="px-5 sm:px-10 lg:px-20 flex flex-1 flex-col items-center justify-center py-10">
-<div class="layout-content-container flex flex-col w-full max-w-2xl items-center text-center">
-<h2 class="text-[var(--text-dark)] tracking-light text-[28px] font-bold leading-tight pb-3 pt-5">Bem-vindo ao AssisFreela</h2>
-<p class="text-[var(--text-dark)] text-base font-normal leading-normal pb-8">Escolha a jornada que mais se alinha com seus objetivos:</p>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
-<button class="flex flex-col items-center justify-center p-6 bg-white border border-[var(--bg-light)] rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:border-[var(--primary-yellow)] cursor-pointer">
-<div class="mb-4 text-6xl text-[var(--primary-yellow)]">
-<span class="material-symbols-outlined"> person_outline </span>
-</div>
-<h3 class="text-xl font-bold text-[var(--text-dark)] mb-2">Sou Freelancer</h3>
-<p class="text-sm text-gray-600 text-center mb-4">Crie seu futuro, explore novas oportunidades e seja seu próprio chefe.</p>
-<span class="text-base font-semibold text-[var(--primary-yellow)]">Começar como Freelancer</span>
-</button>
-<button class="flex flex-col items-center justify-center p-6 bg-white border border-[var(--bg-light)] rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:border-[var(--primary-yellow)] cursor-pointer">
-<div class="mb-4 text-6xl text-[var(--primary-yellow)]">
-<span class="material-symbols-outlined"> business </span>
-</div>
-<h3 class="text-xl font-bold text-[var(--text-dark)] mb-2">Sou Empresa</h3>
-<p class="text-sm text-gray-600 text-center mb-4">Encontre talentos ideais, impulsione seus projetos e construa sua equipe dos sonhos.</p>
-<span class="text-base font-semibold text-[var(--primary-yellow)]">Começar como Empresa</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-</div>
+<body class="font-body bg-gray-100 dark:bg-background-dark min-h-screen">
 
-</body></html>
+    <div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden">
+        
+        <header class="bg-black flex items-center justify-between whitespace-nowrap px-6 py-3 shadow-md">
+             <a href="index.html" class="flex items-center">
+            <img src="img/logo_reto.jpeg" alt="Logo AssisFreela" class="h-10 w-auto"> 
+             </a>
+                <!-- <div class="flex items-center justify-center text-white">
+                    <span class="font-display text-2xl">Assis</span>
+                    <span class="material-icons text-primary -skew-x-12" style="font-size: 2.5rem; margin-left: -4px; margin-right: -4px;">flash_on</span>
+                    <span class="font-display text-2xl">Freela</span>
+                </div> -->
+            </a>
+            <a href="Login.html" class="bg-primary text-black font-semibold px-4 py-2 rounded-lg hover:bg-yellow-400 transition-colors">
+                Entrar
+            </a>
+        </header>
+
+        <div class="flex flex-1 items-center justify-center py-10 px-4 sm:px-0">
+            <div class="layout-content-container flex flex-col w-full max-w-2xl items-center text-center bg-white dark:bg-card-dark rounded-xl shadow-2xl p-8 sm:p-12">
+                
+                <h2 class="text-text-light dark:text-text-dark font-display tracking-normal text-[28px] font-bold leading-tight pb-3 pt-5">
+                    Bem-vindo ao AssisFreela
+                </h2>
+                <p class="text-gray-600 dark:text-gray-400 text-base font-normal leading-normal pb-8">
+                    Escolha a jornada que mais se alinha com seus objetivos para continuar o cadastro gratuito:
+                </p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
+                    
+                    <a href="register_freelancer.html" class="flex flex-col items-center justify-center p-6 bg-gray-100 dark:bg-black border-2 border-transparent rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:border-primary cursor-pointer">
+                        <div class="mb-4 text-6xl text-primary">
+                            <span class="material-icons"> person_outline </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-text-light dark:text-text-dark mb-2 font-display">Sou Freelancer</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 text-center mb-4 font-body">Crie seu futuro, explore novas oportunidades e seja seu próprio chefe.</p>
+                        <span class="text-base font-semibold text-primary font-body">Começar como Freelancer</span>
+                    </a>
+                    
+                    <a href="register_company_free.html" class="flex flex-col items-center justify-center p-6 bg-gray-100 dark:bg-black border-2 border-transparent rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:border-primary cursor-pointer">
+                        <div class="mb-4 text-6xl text-primary">
+                            <span class="material-icons"> business </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-text-light dark:text-text-dark mb-2 font-display">Sou Empresa</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 text-center mb-4 font-body">Encontre talentos ideais, impulsione seus projetos e construa sua equipe.</p>
+                        <span class="text-base font-semibold text-primary font-body">Começar como Empresa</span>
+                    </a>
+                    
+                </div>
+                
+                <a href="index.html" class="mt-8 text-gray-500 dark:text-gray-400 hover:text-primary underline transition-colors">
+                    Voltar para a página inicial
+                </a>
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>

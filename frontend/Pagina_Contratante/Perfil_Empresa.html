@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>AssisFreela - Painel da Empresa</title>
+    <link rel="icon" href="../img/icone_raio.png" type="image/png">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -45,9 +46,11 @@
 
 <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-body">
 
-    <header class="bg-black/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-md">
+    <header class="bg-black fixed top-0 left-0 right-0 z-50 shadow-md">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a class="text-2xl font-display text-white" href="Perfil_Empresa.html">AssisFreela</a>
+            <a href="Perfil_Empresa.html" class="flex items-center">
+    <img src="../img/logo_reto.jpeg" alt="Logo AssisFreela" class="h-10 w-auto"> 
+</a>
             <nav class="hidden md:flex items-center space-x-6">
                 <a class="text-white hover:text-primary transition-colors" href="#vagas-postadas-container">Minhas Vagas</a>
                 <a class="text-white hover:text-primary transition-colors" href="#">Candidatos</a>
@@ -110,6 +113,10 @@
                         <a href="Editar_Perfil_Empresa.html" class="bg-gray-200 dark:bg-gray-700 text-text-light dark:text-text-dark font-semibold px-5 py-3 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors flex items-center justify-center shadow-md">
                             <span class="material-symbols-outlined mr-2">edit_note</span> Editar Perfil
                         </a>
+                        <a href="../suporte.html" 
+                        class="bg-gray-200 dark:bg-gray-700 text-text-light dark:text-text-dark font-semibold px-5 py-3 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors flex items-center justify-center shadow-md">
+                            <span class="material-symbols-outlined mr-2">contact_support</span> Suporte
+                        </a>
                     </div>
                      </div>
 
@@ -171,7 +178,7 @@
         // --- Carregar Dados da Empresa ---
         async function carregarInfoEmpresa(token) {
             try {
-                const response = await fetch("/users/me", { headers: { "Authorization": "Bearer " + token }});
+                const response = await fetch("http://127.0.0.1:8000/users/me", { headers: { "Authorization": "Bearer " + token }});
                 if (!response.ok) {
                     if (response.status === 401 || response.status === 403) { localStorage.removeItem("accessToken"); window.location.href = "../login.html"; }
                     throw new Error(`Falha ao buscar dados: ${response.statusText}`);
@@ -193,7 +200,7 @@
              loadingMessage.textContent = "Carregando vagas recentes...";
 
              try {
-                const response = await fetch("/vagas/me", { headers: { "Authorization": "Bearer " + token } });
+                const response = await fetch("http://127.0.0.1:8000/vagas/me", { headers: { "Authorization": "Bearer " + token } });
                 if (!response.ok) { /* ... erro handling ... */ throw new Error('Falha ao buscar vagas'); }
                 const vagas = await response.json();
                 // --- DEBUG ---
@@ -222,7 +229,7 @@
              loadingMessage.textContent = "Carregando vagas ativas...";
 
             try {
-                const response = await fetch("/vagas/me/active", { headers: { "Authorization": "Bearer " + token } });
+                const response = await fetch("http://127.0.0.1:8000/vagas/me/active", { headers: { "Authorization": "Bearer " + token } });
                 if (!response.ok) { /* ... erro handling ... */ throw new Error(`Falha ao buscar ativas: ${response.statusText}`);}
                 const vagasAtivas = await response.json();
                 // --- DEBUG ---

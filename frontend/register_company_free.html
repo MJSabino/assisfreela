@@ -1,0 +1,225 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>AssisFreela - Cadastro Empresarial</title>
+    <link rel="icon" href="../img/icone_raio.png" type="image/png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FFB300",
+                        "text-light": "#000000",
+                        "text-dark": "#FFFFFF",
+                    },
+                    fontFamily: {
+                        display: ["Montserrat", "sans-serif"],
+                        body: ["Poppins", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .font-display { font-family: 'Montserrat', sans-serif; font-weight: 800; }
+        .font-body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+
+<body class="font-body">
+  <div class="flex min-h-screen w-full flex-col lg:flex-row">
+    
+    <!-- LADO ESQUERDO (PRETO) -->
+    <div class="hidden lg:flex w-1/2 items-center justify-center bg-black text-white relative overflow-hidden">
+      <div class="z-10 text-center px-10">
+        <div class="mb-8">
+          <img src="./img/logo_reto.jpeg" alt="Logo AssisFreela" class="h-16 w-auto mx-auto">
+        </div>
+        <h1 class="text-3xl font-display mb-4">Conectando talentos e oportunidades.</h1>
+        <p class="text-lg text-gray-400">Entre para ter visibilidade e agilidade.</p>
+        <!-- <img src="./img/icone_raio.png" alt="Ícone de raio" class="h-25 w-auto mt-12 animate-pulse mx-auto"> -->
+      </div>
+    </div>
+
+
+        <div class="layout-container flex h-full min-h-screen grow flex-col lg:w-1/2 bg-white">
+            
+            <header class="flex items-center justify-center border-b border-solid border-b-gray-200 py-4 lg:hidden">
+                <a href="../index.html" class="flex items-center text-text-light">
+                    <h2 class="font-display text-xl text-black">AssisFreela Empresas</h2>
+                </a>
+            </header>
+            
+            <main class="flex flex-1 items-center justify-center px-4 py-10">
+                <div class="w-full max-w-[480px] bg-white rounded-2xl p-8 text-center">
+                    
+                    <h2 class="text-text-light font-display text-[28px] font-bold leading-tight pb-3">Cadastro Empresarial</h2>
+                    <p class="text-gray-600 font-body text-base font-normal pb-6">Preencha seus dados para começar a usar a plataforma.</p>
+                    
+                    <form id="register-form" class="space-y-4">
+                        
+                        <div class="space-y-4 pt-2">
+                             <input id="company-name" placeholder="Nome da Empresa"
+                                class="w-full h-14 rounded-lg border border-gray-300 p-4 placeholder:text-gray-500 focus:ring-0 focus:border-primary" />
+                             <input id="company-cnpj" placeholder="CNPJ" 
+                                class="w-full h-14 rounded-lg border border-gray-300 p-4 placeholder:text-gray-500 focus:ring-0 focus:border-primary" />
+                        </div>
+                        
+                        <div class="space-y-4 pt-6">
+                            <input id="company-address" placeholder="Endereço completo"
+                                class="w-full h-14 rounded-lg border border-gray-300 p-4 placeholder:text-gray-500 focus:ring-0 focus:border-primary" />
+                            <input id="company-phone" placeholder="Telefone comercial"
+                                class="w-full h-14 rounded-lg border border-gray-300 p-4 placeholder:text-gray-500 focus:ring-0 focus:border-primary" />
+                            <input id="company-email" type="email" placeholder="E-mail corporativo"
+                                class="w-full h-14 rounded-lg border border-gray-300 p-4 placeholder:text-gray-500 focus:ring-0 focus:border-primary" />
+                            <input id="company-password" type="password" placeholder="Senha"
+                                class="w-full h-14 rounded-lg border border-gray-300 p-4 placeholder:text-gray-500 focus:ring-0 focus:border-primary" />
+                            <input id="company-password-confirm" type="password" placeholder="Confirme sua senha"
+                                class="w-full h-14 rounded-lg border border-gray-300 p-4 placeholder:text-gray-500 focus:ring-0 focus:border-primary" />
+                        </div>
+
+                        <div>
+                            <select id="freelancer-industry"
+                                class="form-input w-full rounded-lg border border-gray-300 p-4 text-gray-500 focus:ring-0 focus:border-primary">
+                                
+                                <option value="" disabled selected>Principal Área de Atuação</option>
+                                
+                                <option value="Tecnologia e TI" class="text-black">Tecnologia e TI (Desenvolvimento Web, Suporte)</option>
+                                <option value="Marketing Digital e Vendas" class="text-black">Marketing Digital e Vendas (Social Media, SEO, SDR)</option>
+                                <option value="Design e Audiovisual" class="text-black">Design e Audiovisual (Gráfico, Vídeo, Fotografia)</option>
+                                <option value="Redação e Tradução" class="text-black">Redação e Tradução (Conteúdo, Revisão)</option>
+                                
+                                <option value="Gastronomia e Alimentos" class="text-black">Gastronomia e Alimentos (Cozinheiro, Bartender, Auxiliar)</option>
+                                <option value="Beleza e Bem-Estar" class="text-black">Beleza e Bem-Estar (Manicure, Cabeleireiro, Personal Trainer)</option>
+                                <option value="Construção e Reparos" class="text-black">Construção e Reparos (Eletricista, Encanador, Pedreiro)</option>
+                                <option value="Eventos e Entretenimento" class="text-black">Eventos e Entretenimento (DJ, Cerimonialista, Segurança)</option>
+                                <option value="Serviços Administrativos" class="text-black">Serviços Administrativos (Assistente Virtual, Recepcionista)</option>
+                                
+                                <option value="Outro" class="text-black">Outro (Especifique na bio, se houver)</option>
+                            </select>
+                        </div>
+
+                        <div class="flex items-center justify-center gap-2">
+                            <input id="company-terms" type="checkbox"
+                                class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-0 focus:border-primary" />
+                            <label for="company-terms" class="text-gray-600 text-sm">Aceito os termos e condições</label>
+                        </div>
+
+                        <p id="register-error" class="text-red-600 text-sm text-center"></p>
+
+                        <button id="register-button" type="button"
+                            class="w-full h-12 rounded-lg bg-primary text-black font-bold hover:opacity-90 transition">
+                            Cadastrar Empresa Gratuitamente
+                        </button>
+
+                        <a href="Login.html" class="text-gray-500 text-sm underline cursor-pointer hover:text-primary transition-colors block mt-2">Já tenho conta</a>
+                    </form>
+                </div>
+            </main>
+            
+            <footer class="flex justify-center border-t border-solid border-t-gray-200 mt-auto pt-8">
+                <div class="flex max-w-[960px] flex-1 flex-col py-4">
+                    <p class="text-gray-500 text-sm font-normal leading-normal px-4 text-center">© 2025 AssisFreela. Todos os direitos reservados.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.getElementById('register-button');
+            const errorElement = document.getElementById('register-error');
+            
+            // Dados da Empresa e Contato
+            const companyNameInput = document.getElementById('company-name');
+            const cnpjInput = document.getElementById('company-cnpj');
+            const addressInput = document.getElementById('company-address');
+            const phoneInput = document.getElementById('company-phone');
+            const industryInput = document.getElementById('company-industry');
+            
+            // Dados de Acesso
+            const emailInput = document.getElementById('company-email');
+            const passwordInput = document.getElementById('company-password');
+            const passwordConfirmInput = document.getElementById('company-password-confirm');
+            const termsInput = document.getElementById('company-terms');
+
+            button.addEventListener('click', async () => {
+                errorElement.textContent = '';
+                
+                const password = passwordInput.value;
+                const passwordConfirm = passwordConfirmInput.value;
+                const email = emailInput.value; 
+
+                // --- Validações ---
+                if (password !== passwordConfirm) {
+                    errorElement.textContent = 'As senhas não conferem.';
+                    return;
+                }
+                if (!termsInput.checked) {
+                    errorElement.textContent = 'Você precisa aceitar os termos e condições.';
+                    return;
+                }
+
+                // --- Preparar Dados para Envio ---
+                const dataToSend = {
+                    company_name: companyNameInput.value,
+                    cnpj: cnpjInput.value,
+                    address: addressInput.value,
+                    phone: phoneInput.value,
+                    email: email,
+                    password: password,
+                    industry: industryInput.value
+                };
+
+                try {
+                    // --- PASSO 1: TENTAR O CADASTRO ---
+                    const registerResponse = await fetch('http://127.0.0.1:8000/register/contratante', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(dataToSend)
+                    });
+
+                    const registerData = await registerResponse.json();
+                    if (!registerResponse.ok) {
+                        throw new Error(registerData.detail || 'Erro ao cadastrar empresa.');
+                    }
+                    
+                    // --- PASSO 2: CADASTRO OK! FAZER AUTO-LOGIN ---
+                    const loginResponse = await fetch('http://127.0.0.1:8000/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email, password: password })
+                    });
+                    
+                    const loginData = await loginResponse.json();
+                    
+                    if (!loginResponse.ok) {
+                        alert('Cadastro criado com sucesso! Faça o login para continuar.');
+                        window.location.href = 'Login.html';
+                        return;
+                    }
+                    
+                    // --- PASSO 3: LOGIN OK! SALVAR TOKEN E REDIRECIONAR ---
+                    localStorage.setItem('access_token', loginData.access_token);
+                    localStorage.setItem('username', loginData.username);
+                    localStorage.setItem('role', loginData.role);
+
+                    // Redireciona para o perfil da empresa
+                    window.location.href = 'Pagina_Contratante/Perfil_Empresa.html'; 
+
+                } catch (error) {
+                    console.error('Erro no processo de cadastro/login:', error);
+                    errorElement.textContent = error.message;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
